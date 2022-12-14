@@ -32,7 +32,10 @@
                             "crypto-js/hmac-sha256",
                             "crypto-js/enc-base64",
                             "flat",
-                            "quill"
+                            "moment",
+                            "quill",
+                            "guid-typescript",
+                            "leaflet"
                         ],
                         "assets": [
                             "src/favicon-16x16.png",
@@ -42,6 +45,11 @@
                                 "glob": "_redirects",
                                 "input": "src",
                                 "output": "/"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "node_modules/leaflet/dist/images/",
+                                "output": "./assets"
                             }
                         ],
                         "stylePreprocessorOptions": {
@@ -55,7 +63,10 @@
                             "src/styles/vendors.scss",
                             "src/@fuse/styles/main.scss",
                             "src/styles/styles.scss",
-                            "src/styles/tailwind.scss"
+                            "src/styles/tailwind.scss",
+                            "./node_modules/leaflet/dist/leaflet.css",
+                            "./node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.css",
+                            "./node_modules/leaflet-geosearch/dist/geosearch.css"
                         ],
                         "scripts": []
                     },
