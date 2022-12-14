@@ -70,10 +70,10 @@ export const appRoutes: Route[] = [
             layout: 'empty'
         },
         children: [
-            //{ path: 'home', loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule) },
-            // { path: 'privacyPolicy', loadChildren: () => import('app/modules/landing/privacyPolicy/privacyPolicy.module').then(m => m.PrivacyPolicyModule) },
-            // { path: 'businessDirectory', loadChildren: () => import('app/modules/landing/businessDirectory/businessDirectory.module').then(m => m.BusinessDirectoryOpenModule) },
-            // { path: 'directoryDetails', loadChildren: () => import('app/modules/landing/directoryDetails/directoryDetails.module').then(m => m.DirectoryDetailsOpenModule) }
+            { path: 'home', loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule) },
+            { path: 'privacyPolicy', loadChildren: () => import('app/modules/landing/privacyPolicy/privacyPolicy.module').then(m => m.PrivacyPolicyModule) },
+            { path: 'businessDirectory', loadChildren: () => import('app/modules/landing/businessDirectory/businessDirectory.module').then(m => m.BusinessDirectoryOpenModule) },
+            { path: 'directoryDetails', loadChildren: () => import('app/modules/landing/directoryDetails/directoryDetails.module').then(m => m.DirectoryDetailsOpenModule) }
         ]
     },
 
@@ -88,26 +88,26 @@ export const appRoutes: Route[] = [
         },
         children: [
             { path: 'dashboard', loadChildren: () => import('app/modules/admin/dashboard/dashboard.module').then(m => m.DashboardModule) },
-            // { path: 'settings', loadChildren: () => import('app/modules/admin/pages/settings/settings.module').then(m => m.SettingsModule) },
-            // { path: 'vehicles', loadChildren: () => import('app/modules/admin/pages/vehicles/vehicles.module').then(m => m.VehiclesModule) },
-            // { path: 'drivers', loadChildren: () => import('app/modules/admin/pages/drivers/drivers.module').then(m => m.DriversModule) },
-            // { path: 'loads', loadChildren: () => import('app/modules/admin/pages/loads/loads.module').then(m => m.LoadsModule) },
-            // { path: 'loads-available', loadChildren: () => import('app/modules/admin/pages/loads-available/loads-available.module').then(m => m.LoadsAvailableModule) },
-            // { path: 'bids', loadChildren: () => import('app/modules/admin/pages/bids/bids.module').then(m => m.BidsModule) },
-            // { path: 'adverts', loadChildren: () => import('app/modules/admin/pages/adverts/adverts.module').then(m => m.AdvertsModule) },
-            // { path: 'directory', loadChildren: () => import('app/modules/admin/pages/directory/directory.module').then(m => m.DirectoryModule) },
-            // { path: 'directory-details', loadChildren: () => import('app/modules/admin/pages/directory-details/directory-details.module').then(m => m.DirectoryDetailsModule) },
-            // { path: 'business-directory', loadChildren: () => import('app/modules/admin/pages/business-directory/business-directory.module').then(m => m.BusinessDirectoryModule) },
-            // { path: 'lookups', loadChildren: () => import('app/modules/admin/pages/lookups/lookups.module').then(m => m.LookupsModule) },
+            { path: 'settings', loadChildren: () => import('app/modules/admin/pages/settings/settings.module').then(m => m.SettingsModule) },
+            { path: 'vehicles', loadChildren: () => import('app/modules/admin/pages/vehicles/vehicles.module').then(m => m.VehiclesModule) },
+            { path: 'drivers', loadChildren: () => import('app/modules/admin/pages/drivers/drivers.module').then(m => m.DriversModule) },
+            { path: 'loads', loadChildren: () => import('app/modules/admin/pages/loads/loads.module').then(m => m.LoadsModule) },
+            { path: 'loads-available', loadChildren: () => import('app/modules/admin/pages/loads-available/loads-available.module').then(m => m.LoadsAvailableModule) },
+            { path: 'bids', loadChildren: () => import('app/modules/admin/pages/bids/bids.module').then(m => m.BidsModule) },
+            { path: 'adverts', loadChildren: () => import('app/modules/admin/pages/adverts/adverts.module').then(m => m.AdvertsModule) },
+            { path: 'directory', loadChildren: () => import('app/modules/admin/pages/directory/directory.module').then(m => m.DirectoryModule) },
+            { path: 'directory-details', loadChildren: () => import('app/modules/admin/pages/directory-details/directory-details.module').then(m => m.DirectoryDetailsModule) },
+            { path: 'business-directory', loadChildren: () => import('app/modules/admin/pages/business-directory/business-directory.module').then(m => m.BusinessDirectoryModule) },
+            { path: 'lookups', loadChildren: () => import('app/modules/admin/pages/lookups/lookups.module').then(m => m.LookupsModule) },
 
-            // { path: 'payment-response', loadChildren: () => import('app/modules/admin/payment-response/payment-response.module').then(m => m.PaymentResponseModule) },
+            { path: 'payment-response', loadChildren: () => import('app/modules/admin/payment-response/payment-response.module').then(m => m.PaymentResponseModule) },
 
-            // { path: 'profile', loadChildren: () => import('app/modules/admin/pages/profile/profile.module').then(m => m.AdminProfileModule) },
-            // { path: 'clients', loadChildren: () => import('app/modules/admin/pages/client/client.module').then(m => m.AdminClientModule) },
-            // { path: 'prospects', loadChildren: () => import('app/modules/admin/pages/prospect/prospect.module').then(m => m.AdminProspectModule) },
-            // { path: 'sow', loadChildren: () => import('app/modules/admin/pages/sow/sow.module').then(m => m.AdminSowModule) },
-            // { path: 'timesheet', loadChildren: () => import('app/modules/admin/pages/timesheet/timesheet.module').then(m => m.AdminTimesheetModule) },
-            // { path: 'invoice', loadChildren: () => import('app/modules/admin/pages/invoice/invoice.module').then(m => m.AdminInvoiceModule) },
+            { path: 'profile', loadChildren: () => import('app/modules/admin/pages/profile/profile.module').then(m => m.AdminProfileModule) },
+            { path: 'clients', loadChildren: () => import('app/modules/admin/pages/client/client.module').then(m => m.AdminClientModule) },
+            { path: 'prospects', loadChildren: () => import('app/modules/admin/pages/prospect/prospect.module').then(m => m.AdminProspectModule) },
+            { path: 'sow', loadChildren: () => import('app/modules/admin/pages/sow/sow.module').then(m => m.AdminSowModule) },
+            { path: 'timesheet', loadChildren: () => import('app/modules/admin/pages/timesheet/timesheet.module').then(m => m.AdminTimesheetModule) },
+            { path: 'invoice', loadChildren: () => import('app/modules/admin/pages/invoice/invoice.module').then(m => m.AdminInvoiceModule) },
         ]
     }
 ];

@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { FuseSplashScreenModule } from '@fuse/services/splash-screen';
+import { FuseCardModule } from '@fuse/components/card';
+import { FuseAlertModule } from '@fuse/components/alert';
 
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
@@ -39,7 +42,6 @@ import { MatRippleModule } from '@angular/material/core';
 
 import { NgApexchartsModule } from 'ng-apexcharts';
 
-// import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import {
     NgxMatDateFormats,
     NgxMatDatetimePickerModule,
@@ -48,61 +50,47 @@ import {
     NGX_MAT_DATE_FORMATS
 } from '@angular-material-components/datetime-picker';
 
-// import { MapComponent } from 'app/modules/admin/controls/map/map.component';
-// import { StarRatingComponent } from 'app/modules/admin/controls/star-rating/star-rating.component';
-// import { AdvertComponent } from 'app/modules/admin/controls/advert/advert.component';
+import { MapComponent } from 'app/modules/admin/controls/map/map.component';
+import { StarRatingComponent } from 'app/modules/admin/controls/star-rating/star-rating.component';
+import { AdvertComponent } from 'app/modules/admin/controls/advert/advert.component';
 
 import { ApiService } from 'app/modules/admin/services/api.service';
 import { TranslocoModule } from '@ngneat/transloco';
 
-// import { DialogAddressComponent } from 'app/modules/admin/dialogs/dialog-address/dialog-address.component';
-// import { DialogDriverComponent } from 'app/modules/admin/dialogs/dialog-driver/dialog-driver.component';
-// import { DialogVehicleComponent } from 'app/modules/admin/dialogs/dialog-vehicle/dialog-vehicle.component';
-// import { DialogLoadComponent } from 'app/modules/admin/dialogs/dialog-load/dialog-load.component';
-// import { DialogReviewComponent } from 'app/modules/admin/dialogs/dialog-review/dialog-review.component';
-// import { DialogLoadDetailsComponent } from 'app/modules/admin/dialogs/dialog-load-details/dialog-load-details.component';
-// import { DialogBidComponent } from 'app/modules/admin/dialogs/dialog-bid/dialog-bid.component';
-// import { DialogBidListComponent } from 'app/modules/admin/dialogs/dialog-bid-list/dialog-bid-list.component';
-// import { DialogAdvertComponent } from 'app/modules/admin/dialogs/dialog-advert/dialog-advert.component';
-// import { DialogDirectoryComponent } from 'app/modules/admin/dialogs/dialog-directory/dialog-directory.component';
-// import { DialogVehicleCategoryComponent } from 'app/modules/admin/dialogs/dialog-vehicleCategory/dialog-vehicleCategory.component';
-// import { DialogVehicleTypeComponent } from 'app/modules/admin/dialogs/dialog-vehicleType/dialog-vehicleType.component';
-// import { DialogLoadCategoryComponent } from 'app/modules/admin/dialogs/dialog-loadCategory/dialog-loadCategory.component';
-// import { DialogLoadTypeComponent } from 'app/modules/admin/dialogs/dialog-loadType/dialog-loadType.component';
-import { FuseCardModule } from '@fuse/components/card';
+import { DialogAddressComponent } from 'app/modules/admin/dialogs/dialog-address/dialog-address.component';
+import { DialogDriverComponent } from 'app/modules/admin/dialogs/dialog-driver/dialog-driver.component';
+import { DialogVehicleComponent } from 'app/modules/admin/dialogs/dialog-vehicle/dialog-vehicle.component';
+import { DialogLoadComponent } from 'app/modules/admin/dialogs/dialog-load/dialog-load.component';
+import { DialogReviewComponent } from 'app/modules/admin/dialogs/dialog-review/dialog-review.component';
+import { DialogLoadDetailsComponent } from 'app/modules/admin/dialogs/dialog-load-details/dialog-load-details.component';
+import { DialogBidComponent } from 'app/modules/admin/dialogs/dialog-bid/dialog-bid.component';
+import { DialogBidListComponent } from 'app/modules/admin/dialogs/dialog-bid-list/dialog-bid-list.component';
+import { DialogAdvertComponent } from 'app/modules/admin/dialogs/dialog-advert/dialog-advert.component';
+import { DialogDirectoryComponent } from 'app/modules/admin/dialogs/dialog-directory/dialog-directory.component';
+import { DialogVehicleCategoryComponent } from 'app/modules/admin/dialogs/dialog-vehicleCategory/dialog-vehicleCategory.component';
+import { DialogVehicleTypeComponent } from 'app/modules/admin/dialogs/dialog-vehicleType/dialog-vehicleType.component';
+import { DialogLoadCategoryComponent } from 'app/modules/admin/dialogs/dialog-loadCategory/dialog-loadCategory.component';
+import { DialogLoadTypeComponent } from 'app/modules/admin/dialogs/dialog-loadType/dialog-loadType.component';
 import { DialogTcComponent } from 'app/modules/admin/dialogs/dialog-tc/dialog-tc.component';
-// import { DialogDirectoryDetailComponent } from 'app/modules/admin/dialogs/dialog-directory-detail/dialog-directory-detail.component';
+import { DialogDirectoryDetailComponent } from 'app/modules/admin/dialogs/dialog-directory-detail/dialog-directory-detail.component';
+import { DialogClientComponent } from 'app/modules/admin/dialogs/client/dialog-client.component';
+import { DialogProspectComponent } from 'app/modules/admin/dialogs/prospect/dialog-prospect.component';
+import { DialogSowComponent } from 'app/modules/admin/dialogs/sow/dialog-sow.component';
+import { DialogTimesheetComponent } from 'app/modules/admin/dialogs/timesheet/dialog-timesheet.component';
+import { DialogInvoiceComponent } from 'app/modules/admin/dialogs/invoice/dialog-invoice.component';
+import { DialogProspectLanguageComponent } from 'app/modules/admin/dialogs/prospectLanguage/dialog-prospectLanguage.component';
+import { DialogProspectSubjectComponent } from 'app/modules/admin/dialogs/prospectSubject/dialog-prospectSubject.component';
+import { DialogProspectTertiaryComponent } from 'app/modules/admin/dialogs/prospectTertiary/dialog-prospectTertiary.component';
+import { DialogProspectEmploymentComponent } from 'app/modules/admin/dialogs/prospectEmployment/dialog-prospectEmployment.component';
+import { DialogProspectEmploymentDutyComponent } from 'app/modules/admin/dialogs/prospectEmploymentDuty/dialog-prospectEmploymentDuty.component';
+import { DialogProspectEmploymentTechnologyComponent } from 'app/modules/admin/dialogs/prospectEmploymentTechnology/dialog-prospectEmploymentTechnology.component';
+import { DialogCvComponent } from 'app/modules/admin/dialogs/cv/dialog-cv.component';
 
-// import { DialogClientComponent } from 'app/modules/admin/dialogs/client/dialog-client.component';
-// import { DialogProspectComponent } from 'app/modules/admin/dialogs/prospect/dialog-prospect.component';
-// import { DialogSowComponent } from 'app/modules/admin/dialogs/sow/dialog-sow.component';
-// import { DialogTimesheetComponent } from 'app/modules/admin/dialogs/timesheet/dialog-timesheet.component';
-// import { DialogInvoiceComponent } from 'app/modules/admin/dialogs/invoice/dialog-invoice.component';
-// import { DialogProspectLanguageComponent } from 'app/modules/admin/dialogs/prospectLanguage/dialog-prospectLanguage.component';
-// import { DialogProspectSubjectComponent } from 'app/modules/admin/dialogs/prospectSubject/dialog-prospectSubject.component';
-// import { DialogProspectTertiaryComponent } from 'app/modules/admin/dialogs/prospectTertiary/dialog-prospectTertiary.component';
-// import { DialogProspectEmploymentComponent } from 'app/modules/admin/dialogs/prospectEmployment/dialog-prospectEmployment.component';
-// import { DialogProspectEmploymentDutyComponent } from 'app/modules/admin/dialogs/prospectEmploymentDuty/dialog-prospectEmploymentDuty.component';
-// import { DialogProspectEmploymentTechnologyComponent } from 'app/modules/admin/dialogs/prospectEmploymentTechnology/dialog-prospectEmploymentTechnology.component';
-// import { DialogCvComponent } from 'app/modules/admin/dialogs/cv/dialog-cv.component';
+import { DialogPaypalComponent } from 'app/modules/admin/dialogs/dialog-paypal/dialog-paypal.component';
+import { DialogInsuranceComponent } from 'app/modules/landing/dialog-insurance/dialog-insurance.component';
+
+import { PlanBillingComponent } from 'app/modules/admin/controls/plan-billing/plan-billing.component';
 import { GoogleMapsModule } from '@angular/google-maps';
-// import { DialogPaypalComponent } from 'app/modules/admin/dialogs/dialog-paypal/dialog-paypal.component';
-// import { PlanBillingComponent } from 'app/modules/admin/controls/plan-billing/plan-billing.component';
-import { FuseAlertModule } from '@fuse/components/alert';
-// import { DialogInsuranceComponent } from 'app/modules/landing/dialog-insurance/dialog-insurance.component';
-// import * as moment from 'moment';
-
-// const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
-//     parse: {
-//         dateInput: "yyyy/mm/dd HH:mm"
-//     },
-//     display: {
-//         dateInput: "l, LTS",
-//         monthYearLabel: "MMM YYYY",
-//         dateA11yLabel: "LL",
-//         monthYearA11yLabel: "MMMM YYYY"
-//     }
-// };
 
 @NgModule({
     imports: [
@@ -151,7 +139,6 @@ import { FuseAlertModule } from '@fuse/components/alert';
 
         NgApexchartsModule,
 
-        // NgxMatFileInputModule,
         NgxMatTimepickerModule,
         NgxMatDatetimePickerModule,
         NgxMatNativeDateModule,
@@ -204,87 +191,86 @@ import { FuseAlertModule } from '@fuse/components/alert';
 
         NgApexchartsModule,
 
-        // NgxMatFileInputModule,
         NgxMatTimepickerModule,
         NgxMatDatetimePickerModule,
         NgxMatNativeDateModule,
 
-        // MapComponent,
-        // StarRatingComponent,
-        // AdvertComponent,
+        MapComponent,
+        StarRatingComponent,
+        AdvertComponent,
 
         GoogleMapsModule
     ],
     declarations: [
         DialogTcComponent,
-        // DialogAddressComponent,
-        // DialogDriverComponent,
-        // DialogVehicleComponent,
-        // DialogVehicleCategoryComponent,
-        // DialogVehicleTypeComponent,
-        // DialogLoadComponent,
-        // DialogLoadCategoryComponent,
-        // DialogLoadTypeComponent,
-        // DialogReviewComponent,
-        // DialogLoadDetailsComponent,
-        // DialogBidComponent,
-        // DialogBidListComponent,
-        // DialogAdvertComponent,
-        // DialogDirectoryComponent,
-        // DialogDirectoryDetailComponent,
-        // DialogInsuranceComponent,
-        // MapComponent,
-        // StarRatingComponent,
-        // AdvertComponent,
+        DialogAddressComponent,
+        DialogDriverComponent,
+        DialogVehicleComponent,
+        DialogVehicleCategoryComponent,
+        DialogVehicleTypeComponent,
+        DialogLoadComponent,
+        DialogLoadCategoryComponent,
+        DialogLoadTypeComponent,
+        DialogReviewComponent,
+        DialogLoadDetailsComponent,
+        DialogBidComponent,
+        DialogBidListComponent,
+        DialogAdvertComponent,
+        DialogDirectoryComponent,
+        DialogDirectoryDetailComponent,
+        DialogInsuranceComponent,
+        MapComponent,
+        StarRatingComponent,
+        AdvertComponent,
 
-        // DialogClientComponent,
-        // DialogProspectComponent,
-        // DialogSowComponent,
-        // DialogTimesheetComponent,
-        // DialogInvoiceComponent,
-        // DialogProspectLanguageComponent,
-        // DialogProspectSubjectComponent,
-        // DialogProspectTertiaryComponent,
-        // DialogProspectEmploymentComponent,
-        // DialogProspectEmploymentDutyComponent,
-        // DialogProspectEmploymentTechnologyComponent,
-        // DialogCvComponent,
-        // DialogPaypalComponent,
-        // PlanBillingComponent
+        DialogClientComponent,
+        DialogProspectComponent,
+        DialogSowComponent,
+        DialogTimesheetComponent,
+        DialogInvoiceComponent,
+        DialogProspectLanguageComponent,
+        DialogProspectSubjectComponent,
+        DialogProspectTertiaryComponent,
+        DialogProspectEmploymentComponent,
+        DialogProspectEmploymentDutyComponent,
+        DialogProspectEmploymentTechnologyComponent,
+        DialogCvComponent,
+        DialogPaypalComponent,
+        PlanBillingComponent
     ],
     entryComponents: [
         DialogTcComponent,
-        // DialogAddressComponent,
-        // DialogDriverComponent,
-        // DialogVehicleComponent,
-        // DialogVehicleCategoryComponent,
-        // DialogVehicleTypeComponent,
-        // DialogLoadComponent,
-        // DialogLoadCategoryComponent,
-        // DialogLoadTypeComponent,
-        // DialogReviewComponent,
-        // DialogLoadDetailsComponent,
-        // DialogBidComponent,
-        // DialogBidListComponent,
-        // DialogAdvertComponent,
-        // DialogDirectoryComponent,
-        // DialogDirectoryDetailComponent,
-        // DialogInsuranceComponent,
+        DialogAddressComponent,
+        DialogDriverComponent,
+        DialogVehicleComponent,
+        DialogVehicleCategoryComponent,
+        DialogVehicleTypeComponent,
+        DialogLoadComponent,
+        DialogLoadCategoryComponent,
+        DialogLoadTypeComponent,
+        DialogReviewComponent,
+        DialogLoadDetailsComponent,
+        DialogBidComponent,
+        DialogBidListComponent,
+        DialogAdvertComponent,
+        DialogDirectoryComponent,
+        DialogDirectoryDetailComponent,
+        DialogInsuranceComponent,
 
-        // DialogClientComponent,
-        // DialogProspectComponent,
-        // DialogSowComponent,
-        // DialogTimesheetComponent,
-        // DialogInvoiceComponent,
-        // DialogProspectLanguageComponent,
-        // DialogProspectSubjectComponent,
-        // DialogProspectTertiaryComponent,
-        // DialogProspectEmploymentComponent,
-        // DialogProspectEmploymentDutyComponent,
-        // DialogProspectEmploymentTechnologyComponent,
-        // DialogCvComponent,
-        // DialogPaypalComponent,
-        // PlanBillingComponent
+        DialogClientComponent,
+        DialogProspectComponent,
+        DialogSowComponent,
+        DialogTimesheetComponent,
+        DialogInvoiceComponent,
+        DialogProspectLanguageComponent,
+        DialogProspectSubjectComponent,
+        DialogProspectTertiaryComponent,
+        DialogProspectEmploymentComponent,
+        DialogProspectEmploymentDutyComponent,
+        DialogProspectEmploymentTechnologyComponent,
+        DialogCvComponent,
+        DialogPaypalComponent,
+        PlanBillingComponent
     ],
     providers: [
         ApiService
