@@ -7,6 +7,7 @@ import { Navigation } from 'app/core/navigation/navigation.types';
 import { NavigationService } from 'app/core/navigation/navigation.service';
 import { User } from 'app/core/user/user.types';
 import { UserService } from 'app/core/user/user.service';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
     selector     : 'classy-layout',
@@ -19,6 +20,7 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
     navigation: Navigation;
     user: User;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
+    native: string = '';
 
     /**
      * Constructor
@@ -32,6 +34,7 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
         private _fuseNavigationService: FuseNavigationService
     )
     {
+        this.native = Capacitor.isNativePlatform() ? 'White' : '';
     }
 
     // -----------------------------------------------------------------------------------------------------

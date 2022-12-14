@@ -46,6 +46,7 @@ export class UserService
      */
     get(): Observable<User>
     {
+        //return JSON.parse(localStorage.getItem('user'));
         return this._httpClient.get<User>('api/common/user').pipe(
             tap((user) => {
                 this._user.next(user);
@@ -60,6 +61,8 @@ export class UserService
      */
     update(user: User): Observable<any>
     {
+        // localStorage.setItem('user', JSON.stringify(user));
+        // return JSON.parse(localStorage.getItem('user'));
         return this._httpClient.patch<User>('api/common/user', {user}).pipe(
             map((response) => {
                 this._user.next(response);

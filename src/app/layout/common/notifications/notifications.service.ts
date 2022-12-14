@@ -1,20 +1,34 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, Observable, ReplaySubject, switchMap, take, tap } from 'rxjs';
 import { Notification } from 'app/layout/common/notifications/notifications.types';
+import { environment } from 'environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
-export class NotificationsService
-{
+export class NotificationsService {
+    baseUrl: string;
     private _notifications: ReplaySubject<Notification[]> = new ReplaySubject<Notification[]>(1);
 
     /**
      * Constructor
      */
-    constructor(private _httpClient: HttpClient)
-    {
+    constructor(
+        private _httpClient: HttpClient,
+        @Inject('BASE_URL') _baseUrl: string
+    ) {
+        this.baseUrl = environment.api; //_baseUrl
+    }
+
+    getHeader(): HttpHeaders {
+        return localStorage.getItem('accessToken') ? new HttpHeaders({
+            'Content-Type': 'application/json',
+            'id': localStorage.getItem('userId'),
+            "Authorization": "Bearer " + localStorage.getItem('accessToken')
+        }) : new HttpHeaders({
+            'Content-Type': 'application/json'
+        });
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -24,8 +38,7 @@ export class NotificationsService
     /**
      * Getter for notifications
      */
-    get notifications$(): Observable<Notification[]>
-    {
+    get notifications$(): Observable<Notification[]> {
         return this._notifications.asObservable();
     }
 
@@ -36,9 +49,8 @@ export class NotificationsService
     /**
      * Get all notifications
      */
-    getAll(): Observable<Notification[]>
-    {
-        return this._httpClient.get<Notification[]>('api/common/notifications').pipe(
+    getAll(): Observable<Notification[]> {
+        return this._httpClient.get<Notification[]>(this.baseUrl + 'api/messages', { headers: this.getHeader() }).pipe(
             tap((notifications) => {
                 this._notifications.next(notifications);
             })
@@ -50,11 +62,10 @@ export class NotificationsService
      *
      * @param notification
      */
-    create(notification: Notification): Observable<Notification>
-    {
+    create(notification: Notification): Observable<Notification> {
         return this.notifications$.pipe(
             take(1),
-            switchMap(notifications => this._httpClient.post<Notification>('api/common/notifications', {notification}).pipe(
+            switchMap(notifications => this._httpClient.post<Notification>(this.baseUrl + 'api/messages', { notification }, { headers: this.getHeader() }).pipe(
                 map((newNotification) => {
 
                     // Update the notifications with the new notification
@@ -73,14 +84,11 @@ export class NotificationsService
      * @param id
      * @param notification
      */
-    update(id: string, notification: Notification): Observable<Notification>
-    {
+    update(id: string, notification: Notification): Observable<Notification> {
+        //console.log(notification);
         return this.notifications$.pipe(
             take(1),
-            switchMap(notifications => this._httpClient.patch<Notification>('api/common/notifications', {
-                id,
-                notification
-            }).pipe(
+            switchMap(notifications => this._httpClient.put<Notification>(this.baseUrl + 'api/messages', notification , { headers: this.getHeader() }).pipe(
                 map((updatedNotification: Notification) => {
 
                     // Find the index of the updated notification
@@ -104,11 +112,10 @@ export class NotificationsService
      *
      * @param id
      */
-    delete(id: string): Observable<boolean>
-    {
+    delete(id: string): Observable<boolean> {
         return this.notifications$.pipe(
             take(1),
-            switchMap(notifications => this._httpClient.delete<boolean>('api/common/notifications', {params: {id}}).pipe(
+            switchMap(notifications => this._httpClient.post<boolean>(this.baseUrl + 'api/messages/delete', { id: id }, { headers: this.getHeader() }).pipe(
                 map((isDeleted: boolean) => {
 
                     // Find the index of the deleted notification
@@ -130,11 +137,10 @@ export class NotificationsService
     /**
      * Mark all notifications as read
      */
-    markAllAsRead(): Observable<boolean>
-    {
+    markAllAsRead(): Observable<boolean> {
         return this.notifications$.pipe(
             take(1),
-            switchMap(notifications => this._httpClient.get<boolean>('api/common/notifications/mark-all-as-read').pipe(
+            switchMap(notifications => this._httpClient.put<boolean>(this.baseUrl + 'api/messages/all', null, { headers: this.getHeader() }).pipe(
                 map((isUpdated: boolean) => {
 
                     // Go through all notifications and set them as read

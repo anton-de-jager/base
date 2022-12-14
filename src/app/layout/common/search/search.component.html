@@ -18,12 +18,11 @@
             class="w-full h-full px-16 sm:px-18"
             [formControl]="searchControl"
             [matAutocomplete]="matAutocomplete"
-            [placeholder]="'Search...'"
+            [placeholder]="'Search for a page or a contact'"
             (keydown)="onKeydown($event)"
             #barSearchInput>
         <mat-autocomplete
             class="max-h-128 sm:px-2 border-t rounded-b shadow-md"
-            [autoSelectActiveOption]="true"
             [disableRipple]="true"
             #matAutocomplete="matAutocomplete">
             <mat-option
@@ -38,8 +37,7 @@
                 <ng-container *ngFor="let result of resultSet.results; trackBy: trackByFn">
                     <mat-option
                         class="group relative mb-1 py-0 px-6 text-md rounded-md hover:bg-gray-100 dark:hover:bg-hover"
-                        [routerLink]="result.link"
-                        [value]="result.value">
+                        [routerLink]="result.link">
                         <!-- Contacts -->
                         <ng-container *ngIf="resultSet.id === 'contacts'">
                             <ng-container *ngTemplateOutlet="contactResult; context: {$implicit: result}"></ng-container>
@@ -68,9 +66,7 @@
 <!-- Basic search -->
 <ng-container *ngIf="appearance === 'basic'">
     <div class="w-full sm:min-w-80">
-        <mat-form-field
-            class="w-full"
-            [subscriptSizing]="'dynamic'">
+        <mat-form-field class="fuse-mat-no-subscript w-full">
             <mat-icon
                 matPrefix
                 [svgIcon]="'heroicons_outline:search'"></mat-icon>
@@ -78,12 +74,11 @@
                 matInput
                 [formControl]="searchControl"
                 [matAutocomplete]="matAutocomplete"
-                [placeholder]="'Search...'"
+                [placeholder]="'Search for a page or a contact'"
                 (keydown)="onKeydown($event)">
         </mat-form-field>
         <mat-autocomplete
             class="max-h-128 mt-1 rounded"
-            [autoSelectActiveOption]="true"
             [disableRipple]="true"
             #matAutocomplete="matAutocomplete">
             <mat-option
@@ -98,8 +93,7 @@
                 <ng-container *ngFor="let result of resultSet.results; trackBy: trackByFn">
                     <mat-option
                         class="group relative mb-1 py-0 px-6 text-md rounded-md hover:bg-gray-100 dark:hover:bg-hover"
-                        [routerLink]="result.link"
-                        [value]="result.value">
+                        [routerLink]="result.link">
                         <!-- Contacts -->
                         <ng-container *ngIf="resultSet.id === 'contacts'">
                             <ng-container *ngTemplateOutlet="contactResult; context: {$implicit: result}"></ng-container>

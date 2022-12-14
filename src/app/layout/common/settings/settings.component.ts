@@ -16,13 +16,6 @@ import { Layout } from 'app/layout/layout.types';
                 flex: none;
                 width: auto;
             }
-
-            @media (screen and min-width: 1280px) {
-
-                empty-layout + settings .settings-cog {
-                    right: 0 !important;
-                }
-            }
         `
     ],
     encapsulation: ViewEncapsulation.None

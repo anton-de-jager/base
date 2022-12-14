@@ -1,7 +1,6 @@
 import { Component, ElementRef, EventEmitter, HostBinding, Input, OnChanges, OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { MatAutocomplete } from '@angular/material/autocomplete';
 import { debounceTime, filter, map, Subject, takeUntil } from 'rxjs';
 import { fuseAnimations } from '@fuse/animations/public-api';
 
@@ -21,8 +20,7 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy
 
     opened: boolean = false;
     resultSets: any[];
-    searchControl: UntypedFormControl = new UntypedFormControl();
-    private _matAutocomplete: MatAutocomplete;
+    searchControl: FormControl = new FormControl();
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     /**
@@ -61,7 +59,7 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy
     set barSearchInput(value: ElementRef)
     {
         // If the value exists, it means that the search input
-        // is now in the DOM, and we can focus on the input..
+        // is now in the DOM and we can focus on the input..
         if ( value )
         {
             // Give Angular time to complete the change detection cycle
@@ -71,17 +69,6 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy
                 value.nativeElement.focus();
             });
         }
-    }
-
-    /**
-     * Setter for mat-autocomplete element reference
-     *
-     * @param value
-     */
-    @ViewChild('matAutocomplete')
-    set matAutocomplete(value: MatAutocomplete)
-    {
-        this._matAutocomplete = value;
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -165,12 +152,14 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy
      */
     onKeydown(event: KeyboardEvent): void
     {
-        // Escape
-        if ( event.code === 'Escape' )
+        // Listen for escape to close the search
+        // if the appearance is 'bar'
+        if ( this.appearance === 'bar' )
         {
-            // If the appearance is 'bar' and the mat-autocomplete is not open, close the search
-            if ( this.appearance === 'bar' && !this._matAutocomplete.isOpen )
+            // Escape
+            if ( event.code === 'Escape' )
             {
+                // Close the search
                 this.close();
             }
         }

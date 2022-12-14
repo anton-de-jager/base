@@ -5,6 +5,7 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { FuseNavigationService, FuseVerticalNavigationComponent } from '@fuse/components/navigation';
 import { Navigation } from 'app/core/navigation/navigation.types';
 import { NavigationService } from 'app/core/navigation/navigation.service';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
     selector     : 'thin-layout',
@@ -16,6 +17,7 @@ export class ThinLayoutComponent implements OnInit, OnDestroy
     isScreenSmall: boolean;
     navigation: Navigation;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
+    native: string = '';
 
     /**
      * Constructor
@@ -28,6 +30,7 @@ export class ThinLayoutComponent implements OnInit, OnDestroy
         private _fuseNavigationService: FuseNavigationService
     )
     {
+        this.native = Capacitor.isNativePlatform() ? 'White' : '';
     }
 
     // -----------------------------------------------------------------------------------------------------

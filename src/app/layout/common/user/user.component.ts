@@ -4,22 +4,25 @@ import { BooleanInput } from '@angular/cdk/coercion';
 import { Subject, takeUntil } from 'rxjs';
 import { User } from 'app/core/user/user.types';
 import { UserService } from 'app/core/user/user.service';
+import { environment } from 'environments/environment';
 
 @Component({
-    selector       : 'user',
-    templateUrl    : './user.component.html',
-    encapsulation  : ViewEncapsulation.None,
+    selector: 'user',
+    templateUrl: './user.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    exportAs       : 'user'
+    exportAs: 'user'
 })
-export class UserComponent implements OnInit, OnDestroy
-{
+export class UserComponent implements OnInit, OnDestroy {
+    timestamp: number = 0;
+    imagesFolder = environment.api + 'Images/';
     /* eslint-disable @typescript-eslint/naming-convention */
     static ngAcceptInputType_showAvatar: BooleanInput;
     /* eslint-enable @typescript-eslint/naming-convention */
 
     @Input() showAvatar: boolean = true;
     user: User;
+    userExists: boolean = false;
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -30,8 +33,8 @@ export class UserComponent implements OnInit, OnDestroy
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
         private _userService: UserService
-    )
-    {
+    ) {
+        this.timestamp = new Date().getTime();
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -41,13 +44,13 @@ export class UserComponent implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
-    {
+    ngOnInit(): void {
         // Subscribe to user changes
         this._userService.user$
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((user: User) => {
                 this.user = user;
+                this.userExists == true;
 
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
@@ -57,8 +60,7 @@ export class UserComponent implements OnInit, OnDestroy
     /**
      * On destroy
      */
-    ngOnDestroy(): void
-    {
+    ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next(null);
         this._unsubscribeAll.complete();
@@ -73,11 +75,9 @@ export class UserComponent implements OnInit, OnDestroy
      *
      * @param status
      */
-    updateUserStatus(status: string): void
-    {
+    updateUserStatus(status: string): void {
         // Return if user is not available
-        if ( !this.user )
-        {
+        if (!this.user) {
             return;
         }
 
@@ -91,8 +91,14 @@ export class UserComponent implements OnInit, OnDestroy
     /**
      * Sign out
      */
-    signOut(): void
-    {
+    signOut(): void {
         this._router.navigate(['/sign-out']);
+    }
+
+    /**
+     * Sign in
+     */
+    signIn(): void {
+        this._router.navigate(['/sign-in']);
     }
 }

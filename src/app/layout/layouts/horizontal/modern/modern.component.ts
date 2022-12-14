@@ -5,6 +5,8 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { FuseNavigationService, FuseVerticalNavigationComponent } from '@fuse/components/navigation';
 import { Navigation } from 'app/core/navigation/navigation.types';
 import { NavigationService } from 'app/core/navigation/navigation.service';
+import { VariableService } from 'app/shared/variable.service';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
     selector     : 'modern-layout',
@@ -16,6 +18,7 @@ export class ModernLayoutComponent implements OnInit, OnDestroy
     isScreenSmall: boolean;
     navigation: Navigation;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
+    native: string = '';
 
     /**
      * Constructor
@@ -25,9 +28,11 @@ export class ModernLayoutComponent implements OnInit, OnDestroy
         private _router: Router,
         private _navigationService: NavigationService,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
-        private _fuseNavigationService: FuseNavigationService
+        private _fuseNavigationService: FuseNavigationService,
+        public variableService: VariableService
     )
     {
+        this.native = Capacitor.isNativePlatform() ? 'White' : '';
     }
 
     // -----------------------------------------------------------------------------------------------------
