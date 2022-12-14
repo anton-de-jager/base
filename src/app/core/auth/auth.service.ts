@@ -1,22 +1,45 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
 import { AuthUtils } from 'app/core/auth/auth.utils';
 import { UserService } from 'app/core/user/user.service';
+import { Router } from '@angular/router';
+import { environment } from 'environments/environment';
 
 @Injectable()
-export class AuthService
-{
+export class AuthService {
     private _authenticated: boolean = false;
+
+    getHeader(): HttpHeaders {
+        return localStorage.getItem('accessToken') ? new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
+            'id': localStorage.getItem('userId'),
+            "Authorization": "Bearer " + localStorage.getItem('accessToken')
+        }) : new HttpHeaders({
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
+            'Content-Type': 'application/json'
+        });
+    }
 
     /**
      * Constructor
      */
     constructor(
         private _httpClient: HttpClient,
-        private _userService: UserService
-    )
-    {
+        private _userService: UserService,
+        private _router: Router
+    ) {
+        // localStorage.removeItem('accessToken')
+        // localStorage.removeItem('userId');
+        // localStorage.removeItem('email');
+        // localStorage.removeItem('user');
+        // localStorage.removeItem('accessToken');
+        // this._authenticated = false;
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -26,14 +49,18 @@ export class AuthService
     /**
      * Setter & getter for access token
      */
-    set accessToken(token: string)
-    {
+    set accessToken(token: string) {
         localStorage.setItem('accessToken', token);
     }
+    set email(email: string) {
+        localStorage.setItem('email', email);
+    }
 
-    get accessToken(): string
-    {
+    get accessToken(): string {
         return localStorage.getItem('accessToken') ?? '';
+    }
+    get email(): string {
+        return localStorage.getItem('email') ?? '';
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -45,9 +72,8 @@ export class AuthService
      *
      * @param email
      */
-    forgotPassword(email: string): Observable<any>
-    {
-        return this._httpClient.post('api/auth/forgot-password', email);
+    forgotPassword(email: string): Observable<any> {
+        return this._httpClient.post(environment.api + 'api/token/forgot-password?email=' + email, email, { headers: this.getHeader() });
     }
 
     /**
@@ -55,9 +81,8 @@ export class AuthService
      *
      * @param password
      */
-    resetPassword(password: string): Observable<any>
-    {
-        return this._httpClient.post('api/auth/reset-password', password);
+    resetPassword(reset: string, password: string): Observable<any> {
+        return this._httpClient.post(environment.api + 'api/token/reset-password', { reset: reset, password: password }, { headers: this.getHeader() });
     }
 
     /**
@@ -65,25 +90,39 @@ export class AuthService
      *
      * @param credentials
      */
-    signIn(credentials: { email: string; password: string }): Observable<any>
-    {
+    signIn(credentials: { email: string; password: string }): Observable<any> {
         // Throw error, if the user is already logged in
         if ( this._authenticated )
         {
             return throwError('User is already logged in.');
         }
 
-        return this._httpClient.post('api/auth/sign-in', credentials).pipe(
+        return this._httpClient.post(environment.api + 'api/token', credentials, { headers: this.getHeader() }).pipe(
             switchMap((response: any) => {
+                //console.log('response', response);
+                localStorage.clear();
 
                 // Store the access token in the local storage
                 this.accessToken = response.accessToken;
+                this.email = response.user.email;
+                localStorage.setItem('accessToken', this.accessToken);
+                localStorage.setItem('userId', response.user.id);
+                localStorage.setItem('email', credentials.email);
+                localStorage.setItem('user', JSON.stringify(response.user));
+                localStorage.setItem('vehiclesQuantity', JSON.stringify(response.user.vehicles));
+                localStorage.setItem('loadsQuantity', JSON.stringify(response.user.loads));
+                localStorage.setItem('advertsQuantity', JSON.stringify(response.user.adverts));
+                localStorage.setItem('directoryQuantity', JSON.stringify(response.user.directory));
+                localStorage.setItem('orderId', JSON.stringify(response.user.orderId));
+                localStorage.setItem('subscriptionId', JSON.stringify(response.user.subscriptionId));
+                localStorage.setItem('subscriptionStatus', JSON.stringify(response.user.subscriptionStatus));
 
                 // Set the authenticated flag to true
                 this._authenticated = true;
 
                 // Store the user on the user service
                 this._userService.user = response.user;
+                console.log(response.user);
 
                 // Return a new observable with the response
                 return of(response);
@@ -94,39 +133,46 @@ export class AuthService
     /**
      * Sign in using the access token
      */
-    signInUsingToken(): Observable<any>
-    {
-        // Sign in using the token
-        return this._httpClient.post('api/auth/sign-in-with-token', {
-            accessToken: this.accessToken
-        }).pipe(
+    signInUsingToken(): Observable<any> {
+        // Renew token
+        return this._httpClient.post(environment.api + 'api/token/refresh', {
+            accessToken: this.accessToken,
+            email: this.email
+        }, { headers: this.getHeader() }).pipe(
             catchError(() =>
 
                 // Return false
                 of(false)
             ),
             switchMap((response: any) => {
-
-                // Replace the access token with the new one if it's available on
-                // the response object.
-                //
-                // This is an added optional step for better security. Once you sign
-                // in using the token, you should generate a new one on the server
-                // side and attach it to the response object. Then the following
-                // piece of code can replace the token with the refreshed one.
-                if ( response.accessToken )
-                {
+                if (response.user) {
+                    localStorage.clear();
+                    // Store the access token in the local storage
                     this.accessToken = response.accessToken;
+                    this.email = response.user.email;
+                    localStorage.setItem('accessToken', this.accessToken);
+                    localStorage.setItem('userId', response.user.id);
+                    localStorage.setItem('email', response.user.email);
+                    localStorage.setItem('user', JSON.stringify(response.user));
+                    localStorage.setItem('vehiclesQuantity', JSON.stringify(response.user.vehicles));
+                    localStorage.setItem('loadsQuantity', JSON.stringify(response.user.loads));
+                    localStorage.setItem('advertsQuantity', JSON.stringify(response.user.adverts));
+                    localStorage.setItem('directoryQuantity', JSON.stringify(response.user.directory));
+                    localStorage.setItem('orderId', JSON.stringify(response.user.orderId));
+                    localStorage.setItem('subscriptionId', JSON.stringify(response.user.subscriptionId));
+                    localStorage.setItem('subscriptionStatus', JSON.stringify(response.user.subscriptionStatus));
+
+                    // Set the authenticated flag to true
+                    this._authenticated = true;
+
+                    // Store the user on the user service
+                    this._userService.user = response.user;
+
+                    // Return true
+                    return of(true);
+                }else{
+                    return of(false);
                 }
-
-                // Set the authenticated flag to true
-                this._authenticated = true;
-
-                // Store the user on the user service
-                this._userService.user = response.user;
-
-                // Return true
-                return of(true);
             })
         );
     }
@@ -134,10 +180,13 @@ export class AuthService
     /**
      * Sign out
      */
-    signOut(): Observable<any>
-    {
+    signOut(): Observable<any> {
         // Remove the access token from the local storage
         localStorage.removeItem('accessToken');
+        localStorage.removeItem('email');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('user');
+        this._userService.user = null;
 
         // Set the authenticated flag to false
         this._authenticated = false;
@@ -151,9 +200,9 @@ export class AuthService
      *
      * @param user
      */
-    signUp(user: { name: string; email: string; password: string; company: string }): Observable<any>
-    {
-        return this._httpClient.post('api/auth/sign-up', user);
+    signUp(user: { company: string; firstName: string; lastName: string; phone: string; email: string; password: string, vehiclesQuantity: number, loadsQuantity: number, advertsQuantity: number, directoryQuantity: number }): Observable<any> {
+        user.password = user.password.replace('#', '%23');
+        return this._httpClient.post(environment.api + 'api/users', user, { headers: this.getHeader() });
     }
 
     /**
@@ -161,31 +210,31 @@ export class AuthService
      *
      * @param credentials
      */
-    unlockSession(credentials: { email: string; password: string }): Observable<any>
-    {
-        return this._httpClient.post('api/auth/unlock-session', credentials);
+    unlockSession(credentials: { email: string; password: string }): Observable<any> {
+        return this._httpClient.post(environment.api + 'api/token/unlock-session', credentials, { headers: this.getHeader() });
     }
 
     /**
      * Check the authentication status
      */
-    check(): Observable<boolean>
-    {
+    check(): Observable<boolean> {
         // Check if the user is logged in
-        if ( this._authenticated )
-        {
+        if (this._authenticated) {
             return of(true);
         }
 
         // Check the access token availability
-        if ( !this.accessToken )
-        {
+        if (!this.accessToken) {
             return of(false);
         }
 
         // Check the access token expire date
-        if ( AuthUtils.isTokenExpired(this.accessToken) )
-        {
+        if (AuthUtils.isTokenExpired(this.accessToken)) {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('email');
+            localStorage.removeItem('userId');
+            localStorage.removeItem('user');
+            this._router.navigateByUrl('/sign-in');
             return of(false);
         }
 

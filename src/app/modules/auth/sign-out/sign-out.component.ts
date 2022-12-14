@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { finalize, Subject, takeUntil, takeWhile, tap, timer } from 'rxjs';
 import { AuthService } from 'app/core/auth/auth.service';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
     selector     : 'auth-sign-out',
@@ -16,6 +17,7 @@ export class AuthSignOutComponent implements OnInit, OnDestroy
         'other': '# seconds'
     };
     private _unsubscribeAll: Subject<any> = new Subject<any>();
+    native: string = '';
 
     /**
      * Constructor
@@ -25,6 +27,7 @@ export class AuthSignOutComponent implements OnInit, OnDestroy
         private _router: Router
     )
     {
+        this.native = Capacitor.isNativePlatform() ? 'White' : '';
     }
 
     // -----------------------------------------------------------------------------------------------------

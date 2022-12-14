@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
     selector     : 'auth-forgot-password',
@@ -19,17 +20,19 @@ export class AuthForgotPasswordComponent implements OnInit
         type   : 'success',
         message: ''
     };
-    forgotPasswordForm: UntypedFormGroup;
+    forgotPasswordForm: FormGroup;
     showAlert: boolean = false;
+    native: string = '';
 
     /**
      * Constructor
      */
     constructor(
         private _authService: AuthService,
-        private _formBuilder: UntypedFormBuilder
+        private _formBuilder: FormBuilder
     )
     {
+        this.native = Capacitor.isNativePlatform() ? 'White' : '';
     }
 
     // -----------------------------------------------------------------------------------------------------

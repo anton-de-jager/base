@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { AuthService } from 'app/core/auth/auth.service';
 import { UserService } from 'app/core/user/user.service';
 import { FuseAlertType } from '@fuse/components/alert';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
     selector     : 'auth-unlock-session',
@@ -22,8 +23,9 @@ export class AuthUnlockSessionComponent implements OnInit
     };
     name: string;
     showAlert: boolean = false;
-    unlockSessionForm: UntypedFormGroup;
+    unlockSessionForm: FormGroup;
     private _email: string;
+    native: string = '';
 
     /**
      * Constructor
@@ -31,11 +33,12 @@ export class AuthUnlockSessionComponent implements OnInit
     constructor(
         private _activatedRoute: ActivatedRoute,
         private _authService: AuthService,
-        private _formBuilder: UntypedFormBuilder,
+        private _formBuilder: FormBuilder,
         private _router: Router,
         private _userService: UserService
     )
     {
+        this.native = Capacitor.isNativePlatform() ? 'White' : '';
     }
 
     // -----------------------------------------------------------------------------------------------------

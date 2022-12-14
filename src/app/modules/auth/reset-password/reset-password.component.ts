@@ -1,26 +1,30 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseValidators } from '@fuse/validators';
 import { FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
+import { ActivatedRoute } from '@angular/router';
+import { Guid } from 'guid-typescript';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
-    selector     : 'auth-reset-password',
-    templateUrl  : './reset-password.component.html',
+    selector: 'auth-reset-password',
+    templateUrl: './reset-password.component.html',
     encapsulation: ViewEncapsulation.None,
-    animations   : fuseAnimations
+    animations: fuseAnimations
 })
-export class AuthResetPasswordComponent implements OnInit
-{
+export class AuthResetPasswordComponent implements OnInit {
     @ViewChild('resetPasswordNgForm') resetPasswordNgForm: NgForm;
+    id: string;
+    native: string = '';
 
     alert: { type: FuseAlertType; message: string } = {
-        type   : 'success',
+        type: 'success',
         message: ''
     };
-    resetPasswordForm: UntypedFormGroup;
+    resetPasswordForm: FormGroup;
     showAlert: boolean = false;
 
     /**
@@ -28,9 +32,10 @@ export class AuthResetPasswordComponent implements OnInit
      */
     constructor(
         private _authService: AuthService,
-        private _formBuilder: UntypedFormBuilder
-    )
-    {
+        private _formBuilder: FormBuilder,
+        private route: ActivatedRoute
+    ) {
+        this.native = Capacitor.isNativePlatform() ? 'White' : '';
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -40,17 +45,23 @@ export class AuthResetPasswordComponent implements OnInit
     /**
      * On init
      */
-    ngOnInit(): void
-    {
+    ngOnInit(): void {
+        this.route.queryParams
+            .subscribe(params => {
+                this.id = params.id
+            });
         // Create the form
         this.resetPasswordForm = this._formBuilder.group({
-                password       : ['', Validators.required],
-                passwordConfirm: ['', Validators.required]
-            },
+            password: ['', Validators.required],
+            passwordConfirm: ['', Validators.required]
+        },
             {
                 validators: FuseValidators.mustMatch('password', 'passwordConfirm')
             }
         );
+        setTimeout(() => {
+            //console.log(this.id);
+        }, 100);
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -60,11 +71,9 @@ export class AuthResetPasswordComponent implements OnInit
     /**
      * Reset password
      */
-    resetPassword(): void
-    {
+    resetPassword(): void {
         // Return if the form is invalid
-        if ( this.resetPasswordForm.invalid )
-        {
+        if (this.resetPasswordForm.invalid) {
             return;
         }
 
@@ -75,7 +84,7 @@ export class AuthResetPasswordComponent implements OnInit
         this.showAlert = false;
 
         // Send the request to the server
-        this._authService.resetPassword(this.resetPasswordForm.get('password').value)
+        this._authService.resetPassword(this.id, this.resetPasswordForm.get('password').value)
             .pipe(
                 finalize(() => {
 
@@ -94,7 +103,7 @@ export class AuthResetPasswordComponent implements OnInit
 
                     // Set the alert
                     this.alert = {
-                        type   : 'success',
+                        type: 'success',
                         message: 'Your password has been reset.'
                     };
                 },
@@ -102,7 +111,7 @@ export class AuthResetPasswordComponent implements OnInit
 
                     // Set the alert
                     this.alert = {
-                        type   : 'error',
+                        type: 'error',
                         message: 'Something went wrong, please try again.'
                     };
                 }

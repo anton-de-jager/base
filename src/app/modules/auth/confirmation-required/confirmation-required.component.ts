@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
     selector     : 'auth-confirmation-required',
@@ -9,10 +10,12 @@ import { fuseAnimations } from '@fuse/animations';
 })
 export class AuthConfirmationRequiredComponent
 {
+    native: string = '';
     /**
      * Constructor
      */
     constructor()
     {
+        this.native = Capacitor.isNativePlatform() ? 'White' : '';
     }
 }

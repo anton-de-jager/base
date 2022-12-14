@@ -11,10 +11,14 @@ import { mockApiServices } from 'app/mock-api';
 import { LayoutModule } from 'app/layout/layout.module';
 import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
+import { VariableService } from 'app/shared/variable.service';
+import { WebsocketService } from './modules/admin/services/websocket.service';
+import { MessageService } from './modules/admin/services/message.service';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
-    scrollPositionRestoration: 'enabled'
+    scrollPositionRestoration: 'enabled',
+    useHash: true
 };
 
 @NgModule({
@@ -39,6 +43,11 @@ const routerConfig: ExtraOptions = {
     ],
     bootstrap   : [
         AppComponent
+    ],
+    providers: [
+        VariableService,
+        WebsocketService, 
+        MessageService
     ]
 })
 export class AppModule
