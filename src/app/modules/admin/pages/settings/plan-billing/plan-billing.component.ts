@@ -7,8 +7,7 @@ import { environment } from 'environments/environment';
 import { Md5 } from 'ts-md5';
 import { Browser } from '@capacitor/browser';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { App } from '@capacitor/app';
-import { DialogIFrameComponent } from 'app/modules/admin/dialogs/dialog-iFrame/dialog-iFrame.component';
+// import { App } from '@capacitor/app';
 
 @Component({
     selector: 'settings-plan-billing',
@@ -67,19 +66,19 @@ export class SettingsPlanBillingComponent implements OnInit {
     ) {
         //this.getPayfast('ebddc094-c180-49c2-8174-d2d1d49e5898');
         //this.getSig('ebddc094-c180-49c2-8174-d2d1d49e5898');
-        App.addListener('appStateChange', ({ isActive }) => {
-            console.log('App state changed. Is active?', isActive);
-            this.fuseSplashScreenService.hide();
-        });
+        // App.addListener('appStateChange', ({ isActive }) => {
+        //     console.log('App state changed. Is active?', isActive);
+        //     this.fuseSplashScreenService.hide();
+        // });
 
-        App.addListener('appUrlOpen', data => {
-            console.log('App opened with URL:', data);
-        });
+        // App.addListener('appUrlOpen', data => {
+        //     console.log('App opened with URL:', data);
+        // });
 
-        App.addListener('appRestoredResult', data => {
-            console.log('Restored state:', data);
-            this.fuseSplashScreenService.hide();
-        });
+        // App.addListener('appRestoredResult', data => {
+        //     console.log('Restored state:', data);
+        //     this.fuseSplashScreenService.hide();
+        // });
     }
 
     getSig(token) {

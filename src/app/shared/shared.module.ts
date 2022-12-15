@@ -91,8 +91,6 @@ import { DialogInsuranceComponent } from 'app/modules/landing/dialog-insurance/d
 
 import { PlanBillingComponent } from 'app/modules/admin/controls/plan-billing/plan-billing.component';
 import { GoogleMapsModule } from '@angular/google-maps';
-import { DialogIFrameComponent } from 'app/modules/admin/dialogs/dialog-iFrame/dialog-iFrame.component';
-import { SafePipeModule } from 'safe-pipe';
 
 @NgModule({
     imports: [
@@ -145,8 +143,7 @@ import { SafePipeModule } from 'safe-pipe';
         NgxMatDatetimePickerModule,
         NgxMatNativeDateModule,
 
-        GoogleMapsModule,
-        SafePipeModule
+        GoogleMapsModule
     ],
     exports: [
         CommonModule,
@@ -202,8 +199,7 @@ import { SafePipeModule } from 'safe-pipe';
         StarRatingComponent,
         AdvertComponent,
 
-        GoogleMapsModule,
-        SafePipeModule
+        GoogleMapsModule
     ],
     declarations: [
         DialogTcComponent,
@@ -240,8 +236,7 @@ import { SafePipeModule } from 'safe-pipe';
         DialogProspectEmploymentTechnologyComponent,
         DialogCvComponent,
         DialogPaypalComponent,
-        PlanBillingComponent,
-        DialogIFrameComponent
+        PlanBillingComponent
     ],
     entryComponents: [
         DialogTcComponent,
@@ -275,8 +270,7 @@ import { SafePipeModule } from 'safe-pipe';
         DialogProspectEmploymentTechnologyComponent,
         DialogCvComponent,
         DialogPaypalComponent,
-        PlanBillingComponent,
-        DialogIFrameComponent
+        PlanBillingComponent
     ],
     providers: [
         ApiService
