@@ -6,6 +6,9 @@ import { ApiService } from 'app/modules/admin/services/api.service';
 import { environment } from 'environments/environment';
 import { Md5 } from 'ts-md5';
 import { Browser } from '@capacitor/browser';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { App } from '@capacitor/app';
+import { DialogIFrameComponent } from 'app/modules/admin/dialogs/dialog-iFrame/dialog-iFrame.component';
 
 @Component({
     selector: 'settings-plan-billing',
@@ -57,12 +60,26 @@ export class SettingsPlanBillingComponent implements OnInit {
      * Constructor
      */
     constructor(
+        private dialog: MatDialog,
         private _formBuilder: FormBuilder,
         private fuseSplashScreenService: FuseSplashScreenService,
         private apiService: ApiService
     ) {
         //this.getPayfast('ebddc094-c180-49c2-8174-d2d1d49e5898');
         //this.getSig('ebddc094-c180-49c2-8174-d2d1d49e5898');
+        App.addListener('appStateChange', ({ isActive }) => {
+            console.log('App state changed. Is active?', isActive);
+            this.fuseSplashScreenService.hide();
+        });
+
+        App.addListener('appUrlOpen', data => {
+            console.log('App opened with URL:', data);
+        });
+
+        App.addListener('appRestoredResult', data => {
+            console.log('Restored state:', data);
+            this.fuseSplashScreenService.hide();
+        });
     }
 
     getSig(token) {
@@ -465,6 +482,21 @@ export class SettingsPlanBillingComponent implements OnInit {
             setTimeout(() => {
                 //Browser.open({ url: 'https://' + environment.pfHost + '.payfast.co.za/eng/process?' + params + 'signature=' + Md5.hashStr(getString + `passphrase=${encodeURIComponent(passPhrase.trim()).replace(/%20/g, "+")}`) });
                 Browser.open({ url: 'https://' + environment.pfHost + '.payfast.co.za/eng/process?' + getString + `passphrase=${encodeURIComponent(passPhrase.trim()).replace(/%20/g, "+")}`, windowName: '_self' });
+                
+
+                // const dialogConfig = new MatDialogConfig();
+
+                // dialogConfig.data = { url: 'https://' + environment.pfHost + '.payfast.co.za/eng/process?' + getString + `passphrase=${encodeURIComponent(passPhrase.trim()).replace(/%20/g, "+")}` };
+
+                // dialogConfig.autoFocus = true;
+                // dialogConfig.disableClose = true;
+                // dialogConfig.hasBackdrop = true;
+                // dialogConfig.ariaLabel = 'fffff';
+                // dialogConfig.width = "800px";
+
+                // const dialogRef = this.dialog.open(DialogIFrameComponent,
+                //     dialogConfig);
+                
             }, 100);
         }, 100);
     }

@@ -6,6 +6,7 @@ import { ApiService } from 'app/modules/admin/services/api.service';
 import { environment } from 'environments/environment';
 import { Md5 } from 'ts-md5';
 import { Browser } from '@capacitor/browser';
+import { App } from '@capacitor/app';
 
 @Component({
     selector: 'plan-billing',
@@ -64,6 +65,19 @@ export class PlanBillingComponent implements OnInit {
         private apiService: ApiService,
         private fuseSplashScreenService: FuseSplashScreenService
     ) {
+        App.addListener('appStateChange', ({ isActive }) => {
+            console.log('App state changed. Is active?', isActive);
+            this.fuseSplashScreenService.hide();
+        });
+
+        App.addListener('appUrlOpen', data => {
+            console.log('App opened with URL:', data);
+        });
+
+        App.addListener('appRestoredResult', data => {
+            console.log('Restored state:', data);
+            this.fuseSplashScreenService.hide();
+        });
     }
 
     // -----------------------------------------------------------------------------------------------------
