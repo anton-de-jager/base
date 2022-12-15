@@ -8,17 +8,14 @@ import { environment } from 'environments/environment';
     providedIn: 'root'
 })
 export class NotificationsService {
-    baseUrl: string;
     private _notifications: ReplaySubject<Notification[]> = new ReplaySubject<Notification[]>(1);
 
     /**
      * Constructor
      */
     constructor(
-        private _httpClient: HttpClient,
-        @Inject('BASE_URL') _baseUrl: string
+        private _httpClient: HttpClient
     ) {
-        this.baseUrl = environment.api; //_baseUrl
     }
 
     getHeader(): HttpHeaders {
@@ -50,7 +47,7 @@ export class NotificationsService {
      * Get all notifications
      */
     getAll(): Observable<Notification[]> {
-        return this._httpClient.get<Notification[]>(this.baseUrl + 'api/messages', { headers: this.getHeader() }).pipe(
+        return this._httpClient.get<Notification[]>(environment.api + 'api/messages', { headers: this.getHeader() }).pipe(
             tap((notifications) => {
                 this._notifications.next(notifications);
             })
@@ -65,7 +62,7 @@ export class NotificationsService {
     create(notification: Notification): Observable<Notification> {
         return this.notifications$.pipe(
             take(1),
-            switchMap(notifications => this._httpClient.post<Notification>(this.baseUrl + 'api/messages', { notification }, { headers: this.getHeader() }).pipe(
+            switchMap(notifications => this._httpClient.post<Notification>(environment.api + 'api/messages', { notification }, { headers: this.getHeader() }).pipe(
                 map((newNotification) => {
 
                     // Update the notifications with the new notification
@@ -88,7 +85,7 @@ export class NotificationsService {
         //console.log(notification);
         return this.notifications$.pipe(
             take(1),
-            switchMap(notifications => this._httpClient.put<Notification>(this.baseUrl + 'api/messages', notification , { headers: this.getHeader() }).pipe(
+            switchMap(notifications => this._httpClient.put<Notification>(environment.api + 'api/messages', notification , { headers: this.getHeader() }).pipe(
                 map((updatedNotification: Notification) => {
 
                     // Find the index of the updated notification
@@ -115,7 +112,7 @@ export class NotificationsService {
     delete(id: string): Observable<boolean> {
         return this.notifications$.pipe(
             take(1),
-            switchMap(notifications => this._httpClient.post<boolean>(this.baseUrl + 'api/messages/delete', { id: id }, { headers: this.getHeader() }).pipe(
+            switchMap(notifications => this._httpClient.post<boolean>(environment.api + 'api/messages/delete', { id: id }, { headers: this.getHeader() }).pipe(
                 map((isDeleted: boolean) => {
 
                     // Find the index of the deleted notification
@@ -140,7 +137,7 @@ export class NotificationsService {
     markAllAsRead(): Observable<boolean> {
         return this.notifications$.pipe(
             take(1),
-            switchMap(notifications => this._httpClient.put<boolean>(this.baseUrl + 'api/messages/all', null, { headers: this.getHeader() }).pipe(
+            switchMap(notifications => this._httpClient.put<boolean>(environment.api + 'api/messages/all', null, { headers: this.getHeader() }).pipe(
                 map((isUpdated: boolean) => {
 
                     // Go through all notifications and set them as read

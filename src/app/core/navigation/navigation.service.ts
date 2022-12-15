@@ -10,17 +10,14 @@ import { environment } from 'environments/environment';
 export class NavigationService
 {
     private _navigation: ReplaySubject<Navigation> = new ReplaySubject<Navigation>(1);
-    private baseUrl: string;
 
     /**
      * Constructor
      */
     constructor(
-        private _httpClient: HttpClient,
-        @Inject('BASE_URL') _baseUrl: string
+        private _httpClient: HttpClient
         )
     {
-        this.baseUrl = environment.api; //_baseUrl
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -44,7 +41,7 @@ export class NavigationService
      */
     get(): Observable<Navigation>
     {
-        return this._httpClient.get<Navigation>(this.baseUrl + 'api/navigation').pipe(
+        return this._httpClient.get<Navigation>(environment.api + 'api/navigation').pipe(
             tap((navigation) => {
                 this._navigation.next(navigation);
             })
