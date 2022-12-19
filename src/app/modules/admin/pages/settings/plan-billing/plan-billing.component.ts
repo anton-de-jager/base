@@ -399,7 +399,7 @@ export class SettingsPlanBillingComponent implements OnInit {
 
     checkOut() {
         this.fuseSplashScreenService.show();
-        this.payfast();
+        //this.payfast();
         // this.payPalConfig = null;
         // this.fuseSplashScreenService.show();
         // this.initConfig();
@@ -409,6 +409,26 @@ export class SettingsPlanBillingComponent implements OnInit {
         //     let el: HTMLElement = this.activateButton.nativeElement;
         //     el.click();
         // }, 3000);
+
+        if (localStorage.getItem('subscriptionId').length > 4) {
+            this.apiService.updatePayfast(localStorage.getItem('subscriptionId'), this.getZAR(), this.getQuantity('vehicle'), this.getQuantity('load'), this.getQuantity('advert'), this.getQuantity('directory')).subscribe(res => {
+                console.log(res);
+                this.fuseSplashScreenService.hide();
+            });
+        } else {
+            var url = environment.api + 'api/payfast/subscription';
+            url += '/' + encodeURIComponent(this.user.id.toString()).replace(/%20/g, '+');
+            url += '/' + encodeURIComponent(this.user.email).replace(/%20/g, '+');
+            url += '/' + encodeURIComponent(this.getZAR()).replace(/%20/g, '+');
+            url += '/' + encodeURIComponent(this.getQuantity('vehicle').toString()).replace(/%20/g, '+');
+            url += '/' + encodeURIComponent(this.getQuantity('load').toString()).replace(/%20/g, '+');
+            url += '/' + encodeURIComponent(this.getQuantity('advert').toString()).replace(/%20/g, '+');
+            url += '/' + encodeURIComponent(this.getQuantity('directory').toString()).replace(/%20/g, '+');
+            //url += '/' + encodeURIComponent(this.user.id.toString()).replace(/%20/g, '+');
+            Browser.open({ url: url, windowName: '_self' });
+
+            this.fuseSplashScreenService.hide();
+        }
     }
 
     payfast() {
@@ -416,9 +436,9 @@ export class SettingsPlanBillingComponent implements OnInit {
         // Merchant details
         myData["merchant_id"] = environment.merchant_id;
         myData["merchant_key"] = environment.merchant_key;
-        myData["cancel_url"] = environment.urlShort + 'settings' + '?action=cancel';
-        myData["return_url"] = environment.urlShort + 'settings' + '?action=return';
-        myData["notify_url"] = environment.apiUrl + "payfast";
+        myData["cancel_url"] = environment.urlShort + 'settings?action=cancel';
+        myData["return_url"] = environment.urlShort + 'settings?action=return';
+        myData["notify_url"] = 'https://goodredhouse53.conveyor.cloud/api/users/payfast';//environment.apiUrl + "payfast";
         // Buyer details
         myData["name_first"] = this.user.firstName;
         myData["name_last"] = this.user.lastName;
@@ -426,6 +446,7 @@ export class SettingsPlanBillingComponent implements OnInit {
         // Transaction details
         myData["m_payment_id"] = this.user.id.toString();
         myData["amount"] = this.getZAR();
+        myData["amount_gross"] = this.getZAR();
         myData["item_name"] = "Loadgistix Subscription";
 
         myData["subscription_type"] = "1";
@@ -436,7 +457,7 @@ export class SettingsPlanBillingComponent implements OnInit {
         myData["custom_int2"] = this.getQuantity('load').toString();
         myData["custom_int3"] = this.getQuantity('advert').toString();
         myData["custom_int4"] = this.getQuantity('directory').toString();
-
+        myData["custom_str1"] = this.user.id.toString();
 
         // Generate signature
         this.generateAPISignature(myData, environment.passPhrase);
@@ -481,7 +502,8 @@ export class SettingsPlanBillingComponent implements OnInit {
             setTimeout(() => {
                 //Browser.open({ url: 'https://' + environment.pfHost + '.payfast.co.za/eng/process?' + params + 'signature=' + Md5.hashStr(getString + `passphrase=${encodeURIComponent(passPhrase.trim()).replace(/%20/g, "+")}`) });
                 Browser.open({ url: 'https://' + environment.pfHost + '.payfast.co.za/eng/process?' + getString + `passphrase=${encodeURIComponent(passPhrase.trim()).replace(/%20/g, "+")}`, windowName: '_self' });
-                
+
+
 
                 // const dialogConfig = new MatDialogConfig();
 
@@ -495,7 +517,7 @@ export class SettingsPlanBillingComponent implements OnInit {
 
                 // const dialogRef = this.dialog.open(DialogIFrameComponent,
                 //     dialogConfig);
-                
+
             }, 100);
         }, 100);
     }

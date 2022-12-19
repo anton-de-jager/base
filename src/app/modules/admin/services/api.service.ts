@@ -95,6 +95,10 @@ export class ApiService {
         }
     }
 
+    updatePayfast(token: string, amount: number, custom_int1: number, custom_int2: number, custom_int3: number, custom_int4: number) {
+        return this.http.post(environment.api + 'api/payfast/update', { token: token, amount_gross: amount, custom_int1: custom_int1, custom_int2: custom_int2, custom_int3: custom_int3, custom_int4: custom_int4 }, { headers: this.getHeader() });
+    }
+
     deleteUser(email: string) {
         return this.http.post(environment.api + 'api/users/delete?email=' + email, email, { headers: this.getHeaderNodeRed() });
     }

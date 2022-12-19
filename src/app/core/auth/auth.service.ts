@@ -117,6 +117,9 @@ export class AuthService {
                 localStorage.setItem('subscriptionId', JSON.stringify(response.user.subscriptionId));
                 localStorage.setItem('subscriptionStatus', JSON.stringify(response.user.subscriptionStatus));
 
+                localStorage.setItem('loginEmail', credentials.email);
+                localStorage.setItem('loginPassword', credentials.password);
+
                 // Set the authenticated flag to true
                 this._authenticated = true;
 
@@ -167,6 +170,7 @@ export class AuthService {
 
                     // Store the user on the user service
                     this._userService.user = response.user;
+                    console.log(response.user);
 
                     // Return true
                     return of(true);
