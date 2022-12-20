@@ -298,10 +298,9 @@ export class PlanBillingComponent implements OnInit {
                 return 0;
         }
     }
-
     checkOut() {
         this.fuseSplashScreenService.show();
-        this.payfast();
+        //this.payfast();
         // this.payPalConfig = null;
         // this.fuseSplashScreenService.show();
         // this.initConfig();
@@ -311,6 +310,26 @@ export class PlanBillingComponent implements OnInit {
         //     let el: HTMLElement = this.activateButton.nativeElement;
         //     el.click();
         // }, 3000);
+
+        if (localStorage.getItem('subscriptionId').length > 4) {
+            this.apiService.updatePayfast(localStorage.getItem('subscriptionId'), this.getZAR(), this.getQuantity('vehicle'), this.getQuantity('load'), this.getQuantity('advert'), this.getQuantity('directory')).subscribe(res => {
+                console.log(res);
+                this.fuseSplashScreenService.hide();
+            });
+        } else {
+            var url = environment.api + 'api/payfast/subscription';
+            url += '/' + encodeURIComponent(this.user.id.toString()).replace(/%20/g, '+');
+            url += '/' + encodeURIComponent(this.user.email).replace(/%20/g, '+');
+            url += '/' + encodeURIComponent(this.getZAR()).replace(/%20/g, '+');
+            url += '/' + encodeURIComponent(this.getQuantity('vehicle').toString()).replace(/%20/g, '+');
+            url += '/' + encodeURIComponent(this.getQuantity('load').toString()).replace(/%20/g, '+');
+            url += '/' + encodeURIComponent(this.getQuantity('advert').toString()).replace(/%20/g, '+');
+            url += '/' + encodeURIComponent(this.getQuantity('directory').toString()).replace(/%20/g, '+');
+            //url += '/' + encodeURIComponent(this.user.id.toString()).replace(/%20/g, '+');
+            Browser.open({ url: url, windowName: '_self' });
+
+            this.fuseSplashScreenService.hide();
+        }
     }
 
     payfast() {
