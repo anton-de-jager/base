@@ -68,6 +68,10 @@ export class ApiService {
         }
     }
 
+    getDirectories(categoryId: Guid, startIndex: number) {
+        return this.http.post(environment.api + 'api/directories/category/' + categoryId + '/' + startIndex, { directoryCategoryId: categoryId, startIndex: startIndex }, { headers: this.getHeader() });
+    }
+
     activate(email: string) {
         return this.http.post(environment.api + 'api/users/activate?email=' + email, email, { headers: this.getHeaderNodeRed() });
     }

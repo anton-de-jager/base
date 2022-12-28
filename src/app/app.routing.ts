@@ -11,8 +11,8 @@ import { Capacitor } from '@capacitor/core';
 export const appRoutes: Route[] = [
 
     // Redirect empty path to '/dashboard'
-    { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
-    //{ path: '', pathMatch: 'full', redirectTo: 'home' },
+    //{ path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+    { path: '', pathMatch: 'full', redirectTo: 'home' },
 
     // Redirect signed in user to the '/dashboard'
     //

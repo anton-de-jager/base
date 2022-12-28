@@ -39,6 +39,8 @@ export interface Section {
     encapsulation: ViewEncapsulation.None
 })
 export class DirectoryDetailsComponent implements OnInit {
+    count: number = 0;
+    scrollIndex = 0;
     timestamp: number = 0;
     imagesFolder = environment.api + 'Images/';
     loading: boolean = true;
@@ -94,7 +96,10 @@ export class DirectoryDetailsComponent implements OnInit {
             .subscribe(params => {
                 this.id = params.id;
                 if (this.id) {
+                    this.count = 0;
+                    this.scrollIndex = 0;
                     this.getDirectories().then(getDirectoriesResult => {
+                        this.count = getDirectoriesResult.length > 0 ? getDirectoriesResult[0].count : 0;
                         if (getDirectoriesResult.length > 0) {
                             this.directoryItems = getDirectoriesResult;
                             this.directoryCategoryDescription = this.directoryItems[0].directoryCategoryDescription;
@@ -108,23 +113,33 @@ export class DirectoryDetailsComponent implements OnInit {
 
                 }
             });
-            // Subscribe to media changes
-            this._fuseMediaWatcherService.onMediaChange$
-                .pipe(takeUntil(this._unsubscribeAll))
-                .subscribe(({matchingAliases}) => {
-    
-                    // Check if the screen is small
-                    this.isScreenSmall = !matchingAliases.includes('md');
-                });
+        // Subscribe to media changes
+        this._fuseMediaWatcherService.onMediaChange$
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe(({ matchingAliases }) => {
+
+                // Check if the screen is small
+                this.isScreenSmall = !matchingAliases.includes('md');
+            });
     }
 
-    toggleNavigation(name: string): void
-    {
+    onScrollDown(ev: any) {
+        if (!this.loading && this.scrollIndex + 10 < this.count) {
+            this.loading = true;
+            this.scrollIndex += 10;
+            this.getDirectories().then(getDirectoriesResult => {
+                this.directoryItems = this.directoryItems.concat(getDirectoriesResult);
+                this.count = this.directoryItems.length > 0 ? this.directoryItems[0].count : 0;
+                this.loading = false;
+            });
+        }
+    }
+
+    toggleNavigation(name: string): void {
         // Get the navigation
         const navigation = this._fuseNavigationService.getComponent<FuseVerticalNavigationComponent>(name);
 
-        if ( navigation )
-        {
+        if (navigation) {
             // Toggle the opened status
             navigation.toggle();
         }
@@ -133,7 +148,7 @@ export class DirectoryDetailsComponent implements OnInit {
     getDirectories(): Promise<directory[]> {
         var promise = new Promise<directory[]>((resolve) => {
             try {
-                this.apiService.post('directories', 'category', this.id).subscribe({
+                this.apiService.getDirectories(this.id, this.scrollIndex).subscribe({
                     next: (apiResult: any) => {
                         //console.log(apiResult);
                         if (apiResult.result == true) {
@@ -184,11 +199,11 @@ export class DirectoryDetailsComponent implements OnInit {
         return arr.length > 1 ? arr[0] + ',' + arr[1] : str;
     }
 
-    navigateExternal(event:Event, url) {
+    navigateExternal(event: Event, url) {
         event.preventDefault();
         if (Capacitor.isNativePlatform) {
             Browser.open({ url });
-        }else{
+        } else {
             window.open(url, '_blank');
         }
     }

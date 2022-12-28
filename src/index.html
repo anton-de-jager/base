@@ -2,15 +2,17 @@
 <html lang="en">
 
 <head>
-    <title>Fuse Angular - Angular Template and Starter Kit</title>
+    <title>Loadgistix</title>
     <meta charset="utf-8">
-    <meta name="description"
-        content="Admin Template and Starter Kit with Angular, Angular Material Components and TailwindCSS">
-    <meta name="keywords"
-        content="Fuse,HTML,CSS,Angular,Angular 13,Angular 14,Angular 15,Material,Angular Components,Tailwind,Tailwind CSS,TailwindCSS,Admin Template,Admin Starter Kit">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;">
+    <meta http-equiv="Content-Security-Policy" content="frame-src payfast.co.za www.payfast.co.za">
+    <meta name="description" content="Connecting the Dots">
+    <meta name="keywords" content="Transport,truck,bakkie,load">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
 
     <base href="/">
+    <script>document.write('<base href="' + document.location + '" />');</script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon-16x16.png">
@@ -29,13 +31,11 @@
     <!-- Splash screen styles -->
     <link href="assets/styles/splash-screen.css" rel="stylesheet">
 
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK1Z1WlRYU6mj6-1ElsWo5FXZ2DvQJahU&libraries=places"></script>
-
 </head>
 
 <body>
 
+    <!-- Splash screen -->
     <fuse-splash-screen>
         <div class="center">
 
@@ -48,6 +48,7 @@
         </div>
     </fuse-splash-screen>
 
+    <!-- App root -->
     <app-root></app-root>
 
 </body>

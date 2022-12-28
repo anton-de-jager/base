@@ -21,7 +21,8 @@ export class directory {
         addressLabel: string,
         avatar: string,
         statusId: Guid,
-        statusDescription: string
+        statusDescription: string,
+        count: number
     ) {
         this.id = id;
         this.userId = userId;
@@ -42,6 +43,7 @@ export class directory {
         this.avatar = avatar;
         this.statusId = statusId;
         this.statusDescription = statusDescription;
+        this.count = count;
     }
     public id: Guid;
     public userId: Guid;
@@ -62,4 +64,5 @@ export class directory {
     public avatar: string;
     public statusId: Guid;
     public statusDescription: string;
+    public count: number;
 }

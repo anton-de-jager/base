@@ -44,7 +44,8 @@
                         <br>
                         <mat-card *ngFor="let directoryItem of directoryItems"
                             class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hiddenmat-elevation-z5"
-                            style="padding: 4px!important;margin-bottom: 12px;">
+                            style="padding: 4px!important;margin-bottom: 12px;" infinite-scroll [infiniteScrollDistance]="1"
+                            (scrolled)="onScrollDown($event)">
                             <mat-card-content>
                                 <div fxFlex fxLayout="row wrap">
                                     <img *ngIf="screenSize>800 && directoryItem.avatar" mat-card-md-image
@@ -112,6 +113,8 @@
                                 </div>
                             </mat-card-content>
                         </mat-card>
+                        <img [src]="loading ? 'assets/images/loaderBalls.gif' : ''"
+                            style="margin: 0 auto" *ngIf="loading">
                     </div>
                     <div class="sm:col-span-2 lg:col-span-2 flex flex-col flex-auto p-6 overflow-hidden"
                         style="padding: 0!important">

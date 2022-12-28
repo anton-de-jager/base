@@ -3,6 +3,7 @@ import { Route, RouterModule } from '@angular/router';
 import { DirectoryDetailsOpenComponent } from 'app/modules/landing/directoryDetails/directoryDetails.component';
 
 import { SharedModule } from 'app/shared/shared.module';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 const directoryDetailsRoutes: Route[] = [
     {
@@ -18,7 +19,8 @@ const directoryDetailsRoutes: Route[] = [
     imports     : [
         RouterModule.forChild(directoryDetailsRoutes),
 
-        SharedModule
+        SharedModule,
+        InfiniteScrollModule
     ]
 })
 export class DirectoryDetailsOpenModule

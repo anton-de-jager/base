@@ -39,6 +39,8 @@ export interface Section {
     encapsulation: ViewEncapsulation.None
 })
 export class DirectoryDetailsOpenComponent implements OnInit {
+    count: number = 0;
+    scrollIndex = 0;
     timestamp: number = 0;
     imagesFolder = environment.api + 'Images/';
     loading: boolean = true;
@@ -97,11 +99,13 @@ export class DirectoryDetailsOpenComponent implements OnInit {
             .subscribe(params => {
                 this.id = params.id;
                 if (this.id) {
+                    this.count = 0;
+                    this.scrollIndex = 0;
                     this.getDirectories().then(getDirectoriesResult => {
-                        console.log('getDirectoriesResult', getDirectoriesResult);
+                        this.count = getDirectoriesResult.length > 0 ? getDirectoriesResult[0].count : 0;
                         if (getDirectoriesResult.length > 0) {
                             this.directoryItems = getDirectoriesResult;
-                            this.directoryCategoryDescription = this.directoryItems[0].directoryCategory.description;
+                            this.directoryCategoryDescription = this.directoryItems[0].directoryCategoryDescription;
                             this.variableService.setPageSelected('Directory Details');
                             this.fuseSplashScreenService.hide(); this.loading = false;
                         } else {
@@ -122,6 +126,18 @@ export class DirectoryDetailsOpenComponent implements OnInit {
             });
     }
 
+    onScrollDown(ev: any) {
+        if (!this.loading && this.scrollIndex + 10 < this.count) {
+            this.loading = true;
+            this.scrollIndex += 10;
+            this.getDirectories().then(getDirectoriesResult => {
+                this.directoryItems = this.directoryItems.concat(getDirectoriesResult);
+                this.count = this.directoryItems.length > 0 ? this.directoryItems[0].count : 0;
+                this.loading = false;
+            });
+        }
+    }
+
     toggleNavigation(name: string): void {
         // Get the navigation
         const navigation = this._fuseNavigationService.getComponent<FuseVerticalNavigationComponent>(name);
@@ -135,7 +151,7 @@ export class DirectoryDetailsOpenComponent implements OnInit {
     getDirectories(): Promise<directory[]> {
         var promise = new Promise<directory[]>((resolve) => {
             try {
-                this.apiService.post('directories', 'category', this.id).subscribe({
+                this.apiService.getDirectories(this.id, this.scrollIndex).subscribe({
                     next: (apiResult: any) => {
                         //console.log(apiResult);
                         if (apiResult.result == true) {

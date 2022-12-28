@@ -1,5 +1,5 @@
 <div class="flex flex-col flex-auto min-w-0">
-    
+
     <div *ngIf="!userId"
         class="relative flex flex-0 items-center w-full h-16 sm:h-20 px-4 md:px-6 z-49 shadow dark:shadow-none dark:border-b bg-card dark:bg-transparent print:hidden">
         <ng-container *ngIf="!isScreenSmall">
@@ -49,7 +49,8 @@
         </div>
     </div>
 
-    <div class="page-layout blank p-4" fusePerfectScrollbar>
+    <div class="page-layout blank p-4" fusePerfectScrollbar infinite-scroll [infiniteScrollDistance]="1"
+    (scrolled)="onScrollDown($event)">
         <div class="grid grid-cols-1 sm:grid-cols-6 gap-6 w-full min-w-0">
             <div class="sm:col-span-4 lg:col-span-4 flex flex-col flex-auto p-6 overflow-hidden"
                 style="padding: 0!important">
@@ -65,9 +66,9 @@
                     <mat-card-content>
                         <div fxFlex fxLayout="row wrap">
                             <img *ngIf="screenSize>800 && directoryItem.avatar" mat-card-md-image
-                            [src]="imagesFolder + 'Directories/' + directoryItem.id + directoryItem.avatar + '?t=' + timestamp">
+                                [src]="imagesFolder + 'Directories/' + directoryItem.id + directoryItem.avatar + '?t=' + timestamp">
                             <img *ngIf="screenSize>800 && !directoryItem.avatar" mat-card-md-image
-                            src="assets/images/no-image.jpg">
+                                src="assets/images/no-image.jpg">
                             <div fxFlex fxLayout="column">
                                 <div fxFlex fxLayout="row wrap">
                                     <h2
@@ -94,7 +95,9 @@
                                     </span>
                                     <span fxFlex fxLayout="row">
                                         <img class="image-icon" src="assets/icons/website.png" alt="">
-                                        <a href (click)="navigateExternal($event, directoryItem.website.substring(0, 4) === 'http' ? directoryItem.website : 'https://' + directoryItem.website)" class="directory">{{directoryItem.website}}</a>
+                                        <a href
+                                            (click)="navigateExternal($event, directoryItem.website.substring(0, 4) === 'http' ? directoryItem.website : 'https://' + directoryItem.website)"
+                                            class="directory">{{directoryItem.website}}</a>
                                     </span>
                                 </div>
                                 <div fxFlex fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutAlign=" start"
@@ -125,6 +128,8 @@
                         </div>
                     </mat-card-content>
                 </mat-card>
+                <img [src]="loading ? 'assets/images/loaderBalls.gif' : ''"
+                    style="margin: 0 auto" *ngIf="loading">
             </div>
             <div class="sm:col-span-2 lg:col-span-2 flex flex-col flex-auto p-6 overflow-hidden"
                 style="padding: 0!important">
