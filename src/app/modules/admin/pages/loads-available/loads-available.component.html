@@ -1,8 +1,8 @@
 <div class="flex flex-col flex-auto min-w-0">
-    <div fxFlex fxLayout="column" class="page-layout blank p-4" fusePerfectScrollbar>
-        <div fxLayout="row wrap" class="w-100-p">
+    <div fxFlex class="flex-col" class="page-layout blank p-4" fusePerfectScrollbar>
+        <div fxLayout="row wrap" class="w-full">
             <div fxFlex="90" fxFlex.gt-xs="96">
-                <mat-form-field appearance="outline" class="w-100-p">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Within Range</mat-label>
                     <mat-select [(ngModel)]="range" placeholder="Within Range" [disabled]="loading">
                         <mat-option *ngFor="let rangeItem of rangeItems" [value]="rangeItem.value">
@@ -10,21 +10,21 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <!-- <div fxFlex="100" fxFlex.gt-xs="24">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <!-- <div class="w-full" fxFlex.gt-xs="24">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Max Weight (kg)</mat-label>
                     <input matInput type="number" placeholder="Max Weight (kg)" [(ngModel)]="weight" [disabled]="loading">
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="24">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="w-full" fxFlex.gt-xs="24">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Max Volume (cm) | width x height x length</mat-label>
                     <input matInput type="number" placeholder="Max Volume (width x height x length)" [(ngModel)]="volumeCm"
                         [disabled]="loading">
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="24">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="w-full" fxFlex.gt-xs="24">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Max Volume (litres)</mat-label>
                     <input matInput type="number" placeholder="Max Volume (litres)" [(ngModel)]="volumeLt"
                         [disabled]="loading">
@@ -217,7 +217,7 @@
                 </div>
             </mat-tab>
         </mat-tab-group>
-        <mat-card *ngIf="loadList.length === 0" fxFlex fxLayout="row" fxLayoutAlign="center center">
+        <mat-card *ngIf="loadList.length === 0" fxFlex class="flex-row" fxLayoutAlign="center center">
             No Loads Available for Selection
         </mat-card>
     </div>

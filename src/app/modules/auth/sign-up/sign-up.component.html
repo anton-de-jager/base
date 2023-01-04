@@ -2,7 +2,7 @@
     <div class="w-full sm:w-auto py-8 px-4 sm:p-12 sm:rounded-2xl sm:shadow sm:bg-card">
         <div class="w-full max-w-80 sm:w-80 mx-auto sm:mx-0">
             <!-- Logo -->
-            <div class="w-100-p">
+            <div class="w-full">
                 <img [src]="'assets/images/logo/loadgistix.png'">
             </div>
 
@@ -76,31 +76,31 @@
                     </mat-error>
                 </mat-form-field>
 
-                <div class="inline-flex items-end w-full mt-1.5">
+                <div class="sm:col-span-2 lg:col-span-1">
                     <input #Image id="fileInput" type="file" (click)="Image.value = null"
                         (change)="handleFileInput($event.target.files)" accept=".jpg,.png,.jpeg" style="display:none" />
-                    <div fxFlex fxLayout="column">
-                        <div fxFlex fxLayout="row">
-                            <button mat-flat-button fxFlex="100" color="primary" (click)="captureImage()"
+                    <div fxFlex class="flex-col">
+                        <div fxFlex class="flex-row">
+                            <button mat-flat-button class="w-full" color="primary" (click)="captureImage()"
                                 style="margin-left: 2px; margin-right: 2px;">Upload
                                 Image</button>
                         </div>
-                        <div fxFlex fxLayout="row" fxLayoutAlign="center center" style="margin-top:4px">
+                        <div fxFlex class="flex-row" fxLayoutAlign="center center" style="margin-top:4px">
                             <img *ngIf="previewImage"
-                                style="max-width: 120px;max-height: 120px;width: auto;height: auto;"
+                                style="max-width: 120px;max-height: 120px;width: auto;height: auto;margin:auto"
                                 [src]="previewImage" class="image" (click)="captureImage()" />
                             <img *ngIf="!previewImage && signUpForm.value.avatar"
-                                style="max-width: 120px;max-height: 120px;width: auto;height: auto;"
+                                style="max-width: 120px;max-height: 120px;width: auto;height: auto;margin:auto"
                                 [src]="imagesFolder + 'Adverts/' + signUpForm.value.id + signUpForm.value.avatar + '?t=' + timestamp"
                                 class="image" (click)="captureImage()" />
                             <img *ngIf="!previewImage && !signUpForm.value.avatar"
-                                style="max-width: 120px;max-height: 120px;width: auto;height: auto;"
+                                style="max-width: 120px;max-height: 120px;width: auto;height: auto;margin:auto"
                                 src="assets/images/no-image.jpg" class="image" (click)="captureImage()" />
                         </div>
                     </div>
                 </div>
 
-                <!-- <mat-form-field appearance="outline" class="w-100-p">
+                <!-- <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Business Directory</mat-label>
                     <mat-select placeholder="Listings" formControlName="directoryQuantity">
                         <mat-option [value]="0">None</mat-option>
@@ -109,7 +109,7 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" class="w-100-p">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Advert</mat-label>
                     <mat-select placeholder="Advert" formControlName="advertsQuantity">
                         <mat-option [value]="0">None</mat-option>
@@ -117,7 +117,7 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" class="w-100-p">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Vehicles</mat-label>
                     <mat-select placeholder="Vehicle Listings" formControlName="vehiclesQuantity">
                         <mat-option [value]="0">None</mat-option>
@@ -128,7 +128,7 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" class="w-100-p">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Loads</mat-label>
                     <mat-select placeholder="Loads" formControlName="loadsQuantity">
                         <mat-option [value]="0">None</mat-option>
@@ -139,7 +139,7 @@
                     </mat-select>
                 </mat-form-field> -->
 
-                <!-- <mat-form-field appearance="outline" class="w-100-p">
+                <!-- <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Resource CV's</mat-label>
                     <mat-select placeholder="Downloads" formControlName="cvQuantity">
                         <mat-option [value]="0">None</mat-option>

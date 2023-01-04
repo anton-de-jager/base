@@ -7,11 +7,11 @@
                     <mat-card class="mat-elevation-z5" style="padding: 4px!important;">
                         <mat-list>
                             <ng-container *ngFor="let directoryCategoryItem of directoryCategoryList">
-                                <mat-list-item class="listItem" *ngIf="(directoryCategoryItem.directory ? directoryCategoryItem.directory.length : 0) > 0">
-                                    <mat-icon mat-list-icon>note</mat-icon>
+                                <mat-list-item class="listItem mat-list-item-word-wrap" *ngIf="(directoryCategoryItem.directory ? directoryCategoryItem.directory.length : 0) > 0">
+                                    <mat-icon mat-list-icon matListItemIcon>note</mat-icon>
                                     <div mat-line><a [href]="'#/directory-details?id='+directoryCategoryItem.id"
                                             [matBadge]="directoryCategoryItem.directory ? directoryCategoryItem.directory.length : 0"
-                                            matBadgeOverlap="false">{{directoryCategoryItem.description}}</a></div>
+                                            matBadgeOverlap="true">{{directoryCategoryItem.description}}</a></div>
                                 </mat-list-item>
                             </ng-container>
                         </mat-list>

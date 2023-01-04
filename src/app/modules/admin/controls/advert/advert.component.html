@@ -7,7 +7,7 @@
       <!-- <img *ngIf="advertItem.avatar" mat-card-sm-image class="advert-image"
       [src]="imagesFolder + 'Adverts/' + advertItem.id + advertItem.avatar + '?t=' + timestamp"> -->
     </mat-card-title-group>
-    <div fxLayout="row" fxLayoutAlign="space-around center" style="margin-top: 14px;" >
+    <div class="flex-row" fxLayoutAlign="space-around center" style="margin-top: 14px;" >
       <img *ngIf="advertItem.avatar" mat-card-image
         [src]="imagesFolder + 'Adverts/' + advertItem.id + advertItem.avatar + '?t=' + timestamp" alt="Image"
         class="advert-image">

@@ -1,17 +1,17 @@
 <h1 mat-dialog-title class="accent dialog-title bg-primary text-on-primary text-secondary">{{data.title}}&nbsp;Client
 </h1>
-<div mat-dialog-content fxLayout="column">
-  <form class="mat-white-bg w-100-p" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="form"
-    [formGroup]="form" novalidate>
-    <div fxLayout="row wrap" style="width:100%">
-      <div fxFlex='100' fxFlex.gt-xs='50' class='p-2'>
+<div mat-dialog-content class="flex-col" style="margin-left: -24px; margin-right: -24px;">
+  <form class="mat-white-bg w-full flex-col" fxLayoutAlign="start" fxFlex="1 0 auto" name="form"
+        [formGroup]="form" novalidate style="padding: 0px!important;margin-top: 20px;">	
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full min-w-0">
+      <div class="sm:col-span-1 lg:col-span-2">
         <mat-form-field appearance='outline' style='width:100%'>
           <mat-label>Description</mat-label><input type='text' matInput placeholder='Description'
             formControlName='description' id='description'>
           <mat-error>Required</mat-error>
         </mat-form-field>
       </div>
-      <div fxFlex='100' fxFlex.gt-xs='50' class='p-2'>
+      <div class="sm:col-span-1 lg:col-span-2">
         <mat-form-field appearance='outline' style='width:100%'>
           <mat-label>Short Description</mat-label><input type='text' matInput placeholder='Short Description'
             formControlName='descriptionShort' id='descriptionShort'>
@@ -19,14 +19,14 @@
         </mat-form-field>
       </div>
 
-      <div fxFlex='100' fxFlex.gt-xs='50' class='p-2'>
+      <div class="sm:col-span-1 lg:col-span-2">
         <mat-form-field appearance='outline' style='width:100%'>
           <mat-label>Registration Number</mat-label><input type='text' matInput placeholder='Registration Number'
             formControlName='registrationNumber' id='registrationNumber'>
           <mat-error>Required</mat-error>
         </mat-form-field>
       </div>
-      <div fxFlex='100' fxFlex.gt-xs='50' class='p-2'>
+      <div class="sm:col-span-1 lg:col-span-2">
         <mat-form-field appearance='outline' style='width:100%'>
           <mat-label>VAT Number</mat-label><input type='text' matInput placeholder='VAT Number'
             formControlName='vatNumber' id='vatNumber'>
@@ -34,7 +34,7 @@
         </mat-form-field>
       </div>
 
-      <div fxFlex='100' class='p-2'>
+      <div>
         <mat-form-field appearance='outline' style='width:100%'>
           <mat-label>Contact</mat-label><input type='text' matInput placeholder='Contact' formControlName='contact'
             id='contact'>
@@ -42,14 +42,14 @@
         </mat-form-field>
       </div>
 
-      <div fxFlex='100' fxFlex.gt-xs='50' class='p-2'>
+      <div class="sm:col-span-1 lg:col-span-2">
         <mat-form-field appearance='outline' style='width:100%'>
           <mat-label>Contact Phone</mat-label><input type='text' matInput placeholder='Contact Phone'
             formControlName='contactPhone' id='contactPhone'>
           <mat-error>Required</mat-error>
         </mat-form-field>
       </div>
-      <div fxFlex='100' fxFlex.gt-xs='50' class='p-2'>
+      <div class="sm:col-span-1 lg:col-span-2">
         <mat-form-field appearance='outline' style='width:100%'>
           <mat-label>Contact Email</mat-label><input type='text' matInput placeholder='Contact Email'
             formControlName='contactEmail' id='contactEmail'>
@@ -57,14 +57,14 @@
         </mat-form-field>
       </div>
 
-      <div fxFlex='100' fxFlex.gt-xs='50' class='p-2'>
+      <div class="sm:col-span-1 lg:col-span-2">
         <mat-form-field appearance='outline' style='width:100%'>
           <mat-label>Address 1</mat-label><input type='text' matInput placeholder='Address 1' formControlName='address1'
             id='address1'>
           <mat-error>Required</mat-error>
         </mat-form-field>
       </div>
-      <div fxFlex='100' fxFlex.gt-xs='50' class='p-2'>
+      <div class="sm:col-span-1 lg:col-span-2">
         <mat-form-field appearance='outline' style='width:100%'>
           <mat-label>Address 2</mat-label><input type='text' matInput placeholder='Address 2' formControlName='address2'
             id='address2'>
@@ -72,14 +72,14 @@
         </mat-form-field>
       </div>
 
-      <div fxFlex='100' fxFlex.gt-xs='50' class='p-2'>
+      <div class="sm:col-span-1 lg:col-span-2">
         <mat-form-field appearance='outline' style='width:100%'>
           <mat-label>City</mat-label><input type='text' matInput placeholder='City' formControlName='addressCity'
             id='addressCity'>
           <mat-error>Required</mat-error>
         </mat-form-field>
       </div>
-      <div fxFlex='100' fxFlex.gt-xs='50' class='p-2'>
+      <div class="sm:col-span-1 lg:col-span-2">
         <mat-form-field appearance='outline' style='width:100%'>
           <mat-label>Province</mat-label><input type='text' matInput placeholder='Province'
             formControlName='addressProvince' id='addressProvince'>
@@ -87,21 +87,21 @@
         </mat-form-field>
       </div>
 
-      <div fxFlex='100' fxFlex.gt-xs='50' class='p-2'>
+      <div class="sm:col-span-1 lg:col-span-2">
         <mat-form-field appearance='outline' style='width:100%'>
           <mat-label>Country</mat-label><input type='text' matInput placeholder='Country'
             formControlName='addressCountry' id='addressCountry'>
           <mat-error>Required</mat-error>
         </mat-form-field>
       </div>
-      <div fxFlex='100' fxFlex.gt-xs='50' class='p-2'>
+      <div class="sm:col-span-1 lg:col-span-2">
         <mat-form-field appearance='outline' style='width:100%'>
           <mat-label>Postal Code</mat-label><input type='text' matInput placeholder='Postal Code'
             formControlName='addressCode' id='addressCode'>
           <mat-error>Required</mat-error>
         </mat-form-field>
       </div>
-      <div fxFlex='100' fxFlex.gt-xs='50' class='p-2'>
+      <div class="sm:col-span-1 lg:col-span-2">
         <mat-form-field appearance='outline' style='width:100%'>
           <mat-label>Billing Date</mat-label>
           <mat-select placeholder="Billing Date" formControlName="dateBillingId">
@@ -114,7 +114,7 @@
       </div>
 
 
-      <div fxFlex='100' fxFlex.gt-xs='50' class='p-2'>
+      <div class="sm:col-span-1 lg:col-span-2">
         <mat-form-field appearance='outline' style='width:100%'>
           <mat-label>Status</mat-label>
           <mat-select placeholder="Status" formControlName="statusId">
@@ -126,7 +126,7 @@
         </mat-form-field>
       </div>
 
-      <div fxFlex='100' *ngIf="data.title==='Update'" class='p-2 flex flex-col overflow-hidden border mb-4'>
+      <div *ngIf="data.title==='Update'" class='p-2 flex flex-col overflow-hidden border mb-4'>
         <!-- Header -->
         <div class="flex flex-0 items-center h-18 px-4 md:px-6 border-b bg-gray-50 dark:bg-transparent">
 

@@ -4,8 +4,8 @@
 
     <!-- Main -->
     <div *ngIf="form" class="p-4 m-4 rounded-2xl shadow bg-card">
-        <div fxLayout="column">
-            <form class="mat-white-bg w-100-p" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="form"
+        <div class="flex-col">
+            <form class="mat-white-bg w-full" class="flex-col" fxLayoutAlign="start" fxFlex="1 0 auto" name="form"
                 [formGroup]="form" novalidate>
                 <div fxLayout="row wrap" style="width:100%">
                     <div fxFlex='100' fxFlex.gt-xs='50' class='p-2'>

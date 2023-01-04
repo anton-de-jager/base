@@ -69,52 +69,52 @@
                                 [src]="imagesFolder + 'Directories/' + directoryItem.id + directoryItem.avatar + '?t=' + timestamp">
                             <img *ngIf="screenSize>800 && !directoryItem.avatar" mat-card-md-image
                                 src="assets/images/no-image.jpg">
-                            <div fxFlex fxLayout="column">
+                            <div fxFlex class="flex-col">
                                 <div fxFlex fxLayout="row wrap">
                                     <h2
                                         class="text-secondary text-xl md:text-2xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
                                         {{directoryItem.companyName}}</h2>
                                 </div>
-                                <div fxFlex fxLayout="column" fxLayout.gt-sm="row wrap" style="margin-bottom: 4px;">
-                                    <span fxFlex fxLayout="row">
+                                <div fxFlex class="flex-col" fxLayout.gt-sm="row wrap" style="margin-bottom: 4px;">
+                                    <span fxFlex class="flex-row">
                                         <img class="image-icon" src="assets/icons/location.png" alt="">
                                         <span>{{getAddressSubstring(directoryItem.addressLabel, ',')}}</span>
                                     </span>
                                 </div>
-                                <div fxFlex fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign=" start"
+                                <div fxFlex class="flex-col" fxLayout.gt-xs="row wrap" fxLayoutAlign=" start"
                                     fxLayoutAlign.gt-sm="space-around center" style="margin-bottom: 4px;">
-                                    <span fxFlex fxLayout="row">
+                                    <span fxFlex class="flex-row">
                                         <img class="image-icon" src="assets/icons/phone.png" alt="">
                                         <a href="tel:{{directoryItem.phone}}" class="directory">{{directoryItem.phone}}
                                         </a>
                                     </span>
-                                    <span fxFlex fxLayout="row">
+                                    <span fxFlex class="flex-row">
                                         <img class="image-icon" src="assets/icons/email.png" alt="">
                                         <a href="mailto:{{directoryItem.email}}"
                                             class="directory">{{directoryItem.email}}</a>
                                     </span>
-                                    <span fxFlex fxLayout="row">
+                                    <span fxFlex class="flex-row">
                                         <img class="image-icon" src="assets/icons/website.png" alt="">
                                         <a href
                                             (click)="navigateExternal($event, directoryItem.website.substring(0, 4) === 'http' ? directoryItem.website : 'https://' + directoryItem.website)"
                                             class="directory">{{directoryItem.website}}</a>
                                     </span>
                                 </div>
-                                <div fxFlex fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutAlign=" start"
+                                <div fxFlex class="flex-col" fxLayout.gt-sm="row wrap" fxLayoutAlign=" start"
                                     fxLayoutAlign.gt-sm="space-around center" style="margin-bottom: 12px;">
-                                    <span fxFlex fxLayout="row" *ngIf="directoryItem.facebook">
+                                    <span fxFlex class="flex-row" *ngIf="directoryItem.facebook">
                                         <img class="image-icon" src="assets/icons/facebook.png" alt="">
                                         <a href (click)="navigateExternal($event, directoryItem.facebook)"
                                             class="directory">{{directoryItem.facebook.replace('https://www.facebook.com/',
                                             '')}}</a>
                                     </span>
-                                    <span fxFlex fxLayout="row" *ngIf="directoryItem.twitter">
+                                    <span fxFlex class="flex-row" *ngIf="directoryItem.twitter">
                                         <img class="image-icon" src="assets/icons/twitter.png" alt="">
                                         <a href (click)="navigateExternal($event, directoryItem.twitter)"
                                             class="directory">{{directoryItem.twitter.replace('https://twitter.com/',
                                             '')}}</a>
                                     </span>
-                                    <span fxFlex fxLayout="row" *ngIf="directoryItem.instagram">
+                                    <span fxFlex class="flex-row" *ngIf="directoryItem.instagram">
                                         <img class="image-icon" src="assets/icons/instagram.png" alt="">
                                         <a href (click)="navigateExternal($event, directoryItem.instagram)"
                                             class="directory">{{directoryItem.instagram.replace('https://twitter.com/',

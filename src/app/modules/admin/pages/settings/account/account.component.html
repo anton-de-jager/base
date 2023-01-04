@@ -64,22 +64,22 @@
                         
             <div class="sm:col-span-4" fxLayout fxLayoutAlign="center center"
                     style="cursor: pointer; text-align: center;">
-                <div fxFlex fxLayout="column">
-                    <div fxFlex fxLayout="row" fxLayoutAlign="center center">
+                <div fxFlex class="flex-col">
+                    <div fxFlex class="flex-row" fxLayoutAlign="center center">
                         <button mat-flat-button color="primary" (click)="captureImage()"
                             style="margin-left: 2px; margin-right: 2px;">Upload
                             Image</button>
                     </div>
-                    <div fxFlex fxLayout="row" fxLayoutAlign="center center" style="margin-top:4px">
+                    <div fxFlex class="flex-row" fxLayoutAlign="center center" style="margin-top:4px">
                         <img *ngIf="previewImage"
-                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;"
+                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;margin:auto"
                             [src]="previewImage" class="image" (click)="captureImage()" />
                         <img *ngIf="!previewImage && accountForm.value.avatar"
-                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;"
+                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;margin:auto"
                             [src]="imagesFolder + 'Users/' + accountForm.value.id + accountForm.value.avatar + '?t=' + timestamp"
                             class="image" (click)="captureImage()" />
                         <img *ngIf="!previewImage && !accountForm.value.avatar"
-                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;"
+                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;margin:auto"
                             src="assets/images/no-image.jpg" class="image" (click)="captureImage()" />
                     </div>
                 </div>

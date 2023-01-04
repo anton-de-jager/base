@@ -4,7 +4,7 @@
         {{showIcon(i)}}
     </mat-icon>
 </button> -->
-<div fxLayout="row" fxLayoutAlign="space-around center">
+<div class="flex-row" fxLayoutAlign="space-around center">
     <mat-icon [color]="color" *ngFor="let ratingId of ratingArr;index as i" [id]="'star_'+i" (click)="onClick(i+1)">
         {{showIcon(i)}}
     </mat-icon>

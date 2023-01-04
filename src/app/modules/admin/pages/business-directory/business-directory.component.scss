@@ -6,3 +6,25 @@
 .listItem{
     cursor: pointer;
 }
+
+.mat-list-item.mat-list-item-word-wrap{
+    height: initial!important;
+}
+.mat-list-item-word-wrap .mat-line {
+    word-wrap: break-word!important;
+    white-space: pre-wrap!important;
+
+    text-overflow: unset!important;
+    overflow: visible!important;
+    display: block!important;
+    margin-top: 0!important;
+    line-height: initial!important;
+}
+.mdc-list-item--with-leading-icon .mdc-list-item__start{
+    margin-left: 8px!important;
+    margin-right: 8px!important;
+}
+
+.mat-mdc-list-item.mdc-list-item--with-leading-avatar.mdc-list-item--with-one-line, .mat-mdc-list-item.mdc-list-item--with-leading-icon.mdc-list-item--with-one-line, .mat-mdc-list-item.mdc-list-item--with-leading-thumbnail.mdc-list-item--with-one-line, .mat-mdc-list-item.mdc-list-item--with-leading-checkbox.mdc-list-item--with-one-line, .mat-mdc-list-item.mdc-list-item--with-leading-radio.mdc-list-item--with-one-line, .mat-mdc-list-item.mdc-list-item--with-leading-switch.mdc-list-item--with-one-line{
+    height: 40px!important;
+}

@@ -1,10 +1,10 @@
 <h1 mat-dialog-title class="accent dialog-title bg-primary text-on-primary text-secondary">{{formData.title}} Directory</h1>
-<div mat-dialog-content fxLayout="column">
-    <form class="mat-white-bg w-100-p" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="form"
-        [formGroup]="form" novalidate style="padding: 0px!important;">
-        <div fxLayout="row wrap" class="w-100-p">
-            <!-- <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+<div mat-dialog-content class="flex-col" style="margin-left: -24px; margin-right: -24px;">
+    <form class="mat-white-bg w-full flex-col" fxLayoutAlign="start" fxFlex="1 0 auto" name="form"
+        [formGroup]="form" novalidate style="padding: 0px!important;margin-top: 20px;">	
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full min-w-0">
+            <!-- <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>UserId</mat-label>
                     <mat-select placeholder="UserId" formControlName="userId">
                         <mat-option *ngFor="let userItem of formData.userList" [value]="userItem.id">
@@ -13,8 +13,8 @@
                     <mat-error>UserId is required</mat-error>
                 </mat-form-field>
             </div> -->
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Category</mat-label>
                     <mat-select placeholder="Category" formControlName="directoryCategoryId">
                         <mat-option *ngFor="let directoryCategoryItem of formData.directoryCategoryList"
@@ -24,69 +24,69 @@
                 </mat-form-field>
             </div>
 
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Company Name</mat-label><input matInput placeholder="Company Name"
                         formControlName="companyName" id="companyName">
 
                     <mat-error *ngIf="hasError('companyName', 'required')">Company Name is required</mat-error>
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Description</mat-label><input matInput placeholder="Description"
                         formControlName="description" id="description" maxlength="500">
 
                     <mat-error *ngIf="hasError('description', 'required')">Description is required</mat-error>
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Email</mat-label><input matInput placeholder="Email" formControlName="email" id="email">
 
                     <mat-error *ngIf="hasError('email', 'required')">Email is required</mat-error>
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Phone</mat-label><input matInput placeholder="Phone" formControlName="phone" id="phone">
 
                     <mat-error *ngIf="hasError('phone', 'required')">Phone is required</mat-error>
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Website</mat-label><input matInput placeholder="Website" formControlName="website"
                         id="website">
 
                     <mat-error *ngIf="hasError('website', 'required')">Website is required</mat-error>
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Instagram Link</mat-label><input matInput placeholder="Instagram Link"
                         formControlName="instagram" id="instagram">
 
                     <mat-error *ngIf="hasError('instagram', 'required')">Instagram Link is required</mat-error>
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Facebook Link</mat-label><input matInput placeholder="Facebook Link"
                         formControlName="facebook" id="facebook">
                     <mat-error *ngIf="hasError('facebook', 'required')">Facebook Link is required</mat-error>
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Twitter Link</mat-label><input matInput placeholder="Twitter Link"
                         formControlName="twitter" id="twitter">
                     <mat-error *ngIf="hasError('twitter', 'required')">Twitter Link is required</mat-error>
                 </mat-form-field>
             </div>
 
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Address</mat-label><input readonly matInput placeholder="Address"
                         formControlName="addressLabel" id="addressLabel"><button matSuffix mat-button
                         (click)="getAddress()">
@@ -97,23 +97,23 @@
                 </mat-form-field>
             </div>
 
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" fxLayout="row" fxLayoutAlign="center center">
+            <div class="sm:col-span-2 lg:col-span-1">
                 <input #Image id="fileInput" type="file" (click)="Image.value = null" (change)="handleFileInput($event.target.files)"
                     accept=".jpg,.png,.jpeg" style="display:none" />
-                <div fxFlex fxLayout="column">
-                    <div fxFlex fxLayout="row">
-                        <button mat-flat-button fxFlex="100" color="primary" (click)="captureImage()"
+                <div fxFlex class="flex-col">
+                    <div fxFlex class="flex-row">
+                        <button mat-flat-button class="w-full" color="primary" (click)="captureImage()"
                             style="margin-left: 2px; margin-right: 2px;">Upload Image</button>
                     </div>
-                    <div fxFlex fxLayout="row" fxLayoutAlign="center center" style="margin-top:4px">
-                        <img *ngIf="previewImage" style="max-width: 120px;max-height: 120px;width: auto;height: auto;"
+                    <div fxFlex class="flex-row" fxLayoutAlign="center center" style="margin-top:4px">
+                        <img *ngIf="previewImage" style="max-width: 120px;max-height: 120px;width: auto;height: auto;margin:auto"
                             [src]="previewImage" class="image" (click)="captureImage()" />
                         <img *ngIf="!previewImage && form.value.avatar"
-                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;"
+                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;margin:auto"
                             [src]="imagesFolder + 'Directories/' + form.value.id + form.value.avatar + '?t=' + timestamp" class="image"
                             (click)="captureImage()" />
                         <img *ngIf="!previewImage && !form.value.avatar"
-                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;"
+                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;margin:auto"
                             src="assets/images/no-image.jpg" class="image" (click)="captureImage()" />
                     </div>
                 </div>

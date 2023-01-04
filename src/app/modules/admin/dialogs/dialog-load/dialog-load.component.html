@@ -1,12 +1,12 @@
-<h1 mat-dialog-title fxLayout="row" class="accent dialog-title bg-primary text-on-primary text-secondary">
+<h1 mat-dialog-title class="flex-row" class="accent dialog-title bg-primary text-on-primary text-secondary">
     <span>{{formData.title}} Load</span>
 </h1>
-<div mat-dialog-content fxLayout="column">
-    <form class="mat-white-bg w-100-p" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="form"
-        [formGroup]="form" novalidate style="padding: 0px!important;">
-        <div fxLayout="row wrap" class="w-100-p">
-            <!-- <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+<div mat-dialog-content class="flex-col" style="margin-left: -24px; margin-right: -24px;">
+    <form class="mat-white-bg w-full flex-col" fxLayoutAlign="start" fxFlex="1 0 auto" name="form"
+        [formGroup]="form" novalidate style="padding: 0px!important;margin-top: 20px;">	
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full min-w-0">
+            <!-- <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>UserId</mat-label>
                     <mat-select placeholder="UserId" formControlName="userId">
                         <mat-option *ngFor="let userItem of formData.userList" [value]="userItem.id">
@@ -15,8 +15,8 @@
                     <mat-error>UserId is required</mat-error>
                 </mat-form-field>
             </div> -->
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Load Type</mat-label>
                     <mat-select placeholder="LoadTypeId" formControlName="loadTypeId"
                         (selectionChange)="loadTypeChanged()">
@@ -31,68 +31,68 @@
                     <mat-error>Load Type is required</mat-error>
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Description</mat-label><input matInput placeholder="Description"
                         formControlName="description" id="description">
                     <mat-error *ngIf="hasError('description', 'required')">Description is required</mat-error>
                 </mat-form-field>
             </div>
 
-            <div *ngIf="!getLoadTypeLiquid()" fxFlex="100" fxFlex.gt-xs="50" class="p-4"
+            <div *ngIf="!getLoadTypeLiquid()" class="sm:col-span-1 lg:col-span-2"
                 style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Items</mat-label><input matInput type="number" placeholder="ItemCount"
                         formControlName="itemCount" id="itemCount">
                     <mat-error *ngIf="hasError('itemCount', 'required')">Item Count is required</mat-error>
                 </mat-form-field>
             </div>
-            <div *ngIf="!getLoadTypeLiquid()" fxFlex="100" fxFlex.gt-xs="50" class="p-4"
+            <div *ngIf="!getLoadTypeLiquid()" class="sm:col-span-1 lg:col-span-2"
                 style="padding: 0px!important;"></div>
 
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Weight (kg)</mat-label><input matInput type="number" placeholder="Weight"
                         formControlName="weight" id="weight">
                     <mat-error *ngIf="hasError('weight', 'required')">Weight is required</mat-error>
                 </mat-form-field>
             </div>
-            <div *ngIf="!getLoadTypeLiquid()" fxFlex="100" fxFlex.gt-xs="50" class="p-4"
+            <div *ngIf="!getLoadTypeLiquid()" class="sm:col-span-1 lg:col-span-2"
                 style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Length (cm)</mat-label><input matInput type="number" placeholder="Length"
                         formControlName="length" id="length">
                     <mat-error *ngIf="hasError('length', 'required')">Length is required</mat-error>
                 </mat-form-field>
             </div>
 
-            <div *ngIf="!getLoadTypeLiquid()" fxFlex="100" fxFlex.gt-xs="50" class="p-4"
+            <div *ngIf="!getLoadTypeLiquid()" class="sm:col-span-1 lg:col-span-2"
                 style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Width (cm)</mat-label><input matInput type="number" placeholder="Width"
                         formControlName="width" id="width">
                     <mat-error *ngIf="hasError('width', 'required')">Width is required</mat-error>
                 </mat-form-field>
             </div>
-            <div *ngIf="!getLoadTypeLiquid()" fxFlex="100" fxFlex.gt-xs="50" class="p-4"
+            <div *ngIf="!getLoadTypeLiquid()" class="sm:col-span-1 lg:col-span-2"
                 style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Height (cm)</mat-label><input matInput type="number" placeholder="Height"
                         formControlName="height" id="height">
                     <mat-error *ngIf="hasError('height', 'required')">Height is required</mat-error>
                 </mat-form-field>
             </div>
 
-            <div *ngIf="getLoadTypeLiquid()" fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div *ngIf="getLoadTypeLiquid()" class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Volume (litres)</mat-label><input matInput type="number" placeholder="Volume (Litres)"
                         formControlName="volume" id="volume">
                     <mat-error *ngIf="hasError('volume', 'required')">Volume is required</mat-error>
                 </mat-form-field>
             </div>
 
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Depature Date</mat-label>
                     <input matInput [ngxMatDatetimePicker]="picker_dateOut" placeholder="Choose a date"
                         formControlName="dateOut">
@@ -102,8 +102,8 @@
                     <mat-error>Depature Date is required</mat-error>
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Delivery Date</mat-label>
                     <input matInput [ngxMatDatetimePicker]="picker_dateIn" placeholder="Choose a date"
                         formControlName="dateIn">
@@ -114,23 +114,23 @@
                 </mat-form-field>
             </div>
 
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Total Value</mat-label><input matInput type="number" placeholder="Total Value"
                         formControlName="totalValue" id="totalValue">
                     <mat-error *ngIf="hasError('totalValue', 'required')">Total Value is required</mat-error>
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Expected Transport Cost</mat-label><input matInput type="number" placeholder="Price"
                         formControlName="price" id="price">
                     <mat-error *ngIf="hasError('price', 'required')">Price is required</mat-error>
                 </mat-form-field>
             </div>
 
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Bid Close Date</mat-label>
                     <input matInput [ngxMatDatetimePicker]="picker_dateBidEnd" placeholder="Choose a date"
                         formControlName="dateBidEnd">
@@ -141,8 +141,8 @@
                     <mat-error>Bid Close Date is required</mat-error>
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Notification Type</mat-label>
                     <mat-select placeholder="NotificationId" formControlName="notificationId">
                         <mat-option *ngFor="let notificationItem of formData.notificationList"
@@ -152,8 +152,8 @@
                 </mat-form-field>
             </div>
 
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Originating Address</mat-label><input readonly matInput
                         placeholder="OriginatingAddressLabel" formControlName="originatingAddressLabel"
                         id="originatingAddressLabel"><button matSuffix mat-button
@@ -164,8 +164,8 @@
                     </mat-error>
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Destination Address</mat-label><input readonly matInput
                         placeholder="DestinationAddressLabel" formControlName="destinationAddressLabel"
                         id="destinationAddressLabel"><button matSuffix mat-button
@@ -177,38 +177,38 @@
                 </mat-form-field>
             </div>
 
-            <div fxFlex="100" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="w-full" class="p-4" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Special Instructions / Constraints</mat-label><textarea matInput
                         placeholder="Special Instructions" formControlName="note" id="description"></textarea>
                     <mat-error *ngIf="hasError('note', 'required')">Note is required</mat-error>
                 </mat-form-field>
             </div>
 
-            <div fxFlex="100" class="p-4" fxLayout="row" fxLayoutAlign="center center">
+            <div class="sm:col-span-2 lg:col-span-1">
                 <input #Image id="fileInput" type="file" (click)="Image.value = null" (change)="handleFileInput($event.target.files)"
                     accept=".jpg,.png,.jpeg" style="display:none" />
-                <div fxFlex fxLayout="column">
-                    <div fxFlex fxLayout="row">
-                        <button *ngIf="!readOnly" mat-flat-button fxFlex="100" color="primary" (click)="captureImage()"
+                <div fxFlex class="flex-col">
+                    <div fxFlex class="flex-row">
+                        <button *ngIf="!readOnly" mat-flat-button class="w-full" color="primary" (click)="captureImage()"
                             style="margin-left: 2px; margin-right: 2px;">Upload Image</button>
                     </div>
-                    <div fxFlex fxLayout="row" fxLayoutAlign="center center" style="margin-top:4px">
+                    <div fxFlex class="flex-row" fxLayoutAlign="center center" style="margin-top:4px">
                         <img *ngIf="previewImage && !readOnly"
-                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;" [src]="previewImage"
+                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;margin:auto" [src]="previewImage"
                             class="image" (click)="captureImage()" />
                         <img *ngIf="!previewImage && form.value.avatar && !readOnly"
-                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;"
+                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;margin:auto"
                             [src]="imagesFolder + 'Loads/' + form.value.id + form.value.avatar + '?t=' + timestamp" class="image"
                             (click)="captureImage()" />
                         <img *ngIf="!previewImage && !form.value.avatar && !readOnly"
-                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;"
+                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;margin:auto"
                             src="assets/images/no-image.jpg" class="image" (click)="captureImage()" />
                         <img *ngIf="readOnly && form.value.avatar"
-                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;"
+                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;margin:auto"
                             [src]="imagesFolder + 'Loads/' + form.value.id + form.value.avatar + '?t=' + timestamp" class="image" />
                         <img *ngIf="readOnly && !form.value.avatar"
-                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;"
+                            style="max-width: 120px;max-height: 120px;width: auto;height: auto;margin:auto"
                             src="assets/images/no-image.jpg" class="image" />
                     </div>
                 </div>

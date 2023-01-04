@@ -1,10 +1,10 @@
 <h1 mat-dialog-title class="accent dialog-title bg-primary text-on-primary text-secondary">Add Review</h1>
-<div mat-dialog-content fxLayout="column">
-    <form class="mat-white-bg w-100-p" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="form"
-        [formGroup]="form" novalidate style="padding: 0px!important;">
-        <div fxLayout="row wrap" class="w-100-p">
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p" floatLabel="true">
+<div mat-dialog-content class="flex-col" style="margin-left: -24px; margin-right: -24px;">
+    <form class="mat-white-bg w-full flex-col" fxLayoutAlign="start" fxFlex="1 0 auto" name="form"
+        [formGroup]="form" novalidate style="padding: 0px!important;margin-top: 20px;">	
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full min-w-0">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full" floatLabel="true">
                     <mat-label>Punctuality</mat-label>
                     <input matInput type="number" placeholder="Punctuality" style="display:none"
                         formControlName="ratingPunctuality" id="ratingPunctuality">
@@ -13,8 +13,8 @@
                     <mat-error>Rating is required</mat-error>
                 </mat-form-field>
             </div>
-            <div *ngIf="reviewType==='Driver'" fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p" floatLabel="true">
+            <div *ngIf="reviewType==='Driver'" class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full" floatLabel="true">
                     <mat-label>VehicleDescription</mat-label>
                     <input matInput type="number" placeholder="VehicleDescription" style="display:none"
                         formControlName="ratingVehicleDescription" id="ratingVehicleDescription">
@@ -23,8 +23,8 @@
                     <mat-error>Rating is required</mat-error>
                 </mat-form-field>
             </div>
-            <div *ngIf="reviewType==='Load'" fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p" floatLabel="true">
+            <div *ngIf="reviewType==='Load'" class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full" floatLabel="true">
                     <mat-label>LoadDescription</mat-label>
                     <input matInput type="number" placeholder="LoadDescription" style="display:none"
                         formControlName="ratingLoadDescription" id="ratingLoadDescription">
@@ -33,8 +33,8 @@
                     <mat-error>Rating is required</mat-error>
                 </mat-form-field>
             </div>
-            <div *ngIf="reviewType==='Load'" fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p" floatLabel="true">
+            <div *ngIf="reviewType==='Load'" class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full" floatLabel="true">
                     <mat-label>Payment</mat-label>
                     <input matInput type="number" placeholder="Payment" style="display:none"
                         formControlName="ratingPayment" id="ratingPayment">
@@ -43,8 +43,8 @@
                     <mat-error>Rating is required</mat-error>
                 </mat-form-field>
             </div>
-            <div *ngIf="reviewType==='Driver'" fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p" floatLabel="true">
+            <div *ngIf="reviewType==='Driver'" class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full" floatLabel="true">
                     <mat-label>Condition</mat-label>
                     <input matInput type="number" placeholder="Condition" style="display:none"
                         formControlName="ratingCondition" id="ratingCondition">
@@ -53,8 +53,8 @@
                     <mat-error>Rating is required</mat-error>
                 </mat-form-field>
             </div>
-            <!-- <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p" floatLabel="true">
+            <!-- <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full" floatLabel="true">
                     <mat-label>Care</mat-label>
                     <input matInput type="number" placeholder="Care" style="display:none"
                         formControlName="ratingCare" id="ratingCare">
@@ -63,8 +63,8 @@
                     <mat-error>Rating is required</mat-error>
                 </mat-form-field>
             </div> -->
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p" floatLabel="true">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full" floatLabel="true">
                     <mat-label>Attitude</mat-label>
                     <input matInput type="number" placeholder="Attitude" style="display:none"
                         formControlName="ratingAttitude" id="ratingAttitude">
@@ -73,8 +73,8 @@
                     <mat-error>Rating is required</mat-error>
                 </mat-form-field>
             </div>
-            <div fxFlex="100" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p" floatLabel="true">
+            <div class="w-full" class="p-4" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full" floatLabel="true">
                     <mat-label>Note</mat-label>
                     <textarea matInput type="note" placeholder="Note"
                         formControlName="note" id="note"></textarea>

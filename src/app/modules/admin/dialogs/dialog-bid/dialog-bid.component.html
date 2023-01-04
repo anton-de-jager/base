@@ -1,10 +1,10 @@
 <h1 mat-dialog-title class="accent dialog-title bg-primary text-on-primary text-secondary">{{formData.title}} Bid</h1>
-<div mat-dialog-content fxLayout="column">
-    <form class="mat-white-bg w-100-p" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="form"
-        [formGroup]="form" novalidate style="padding: 0px!important;">
-        <div fxLayout="row wrap" class="w-100-p">
-            <!-- <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+<div mat-dialog-content class="flex-col" style="margin-left: -24px; margin-right: -24px;">
+    <form class="mat-white-bg w-full flex-col" fxLayoutAlign="start" fxFlex="1 0 auto" name="form"
+        [formGroup]="form" novalidate style="padding: 0px!important;margin-top: 20px;">	
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full min-w-0">
+            <!-- <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>UserId</mat-label>
                     <mat-select placeholder="UserId" formControlName="userId">
                         <mat-option *ngFor="let userItem of formData.userList" [value]="userItem.id">
@@ -13,8 +13,8 @@
                     <mat-error>UserId is required</mat-error>
                 </mat-form-field>
             </div> -->
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Load Description</mat-label>
                     <mat-select placeholder="LoadId" formControlName="loadId">
                         <mat-option *ngFor="let loadItem of formData.loadList" [value]="loadItem.id">
@@ -23,8 +23,8 @@
                     <mat-error>Load Description is required</mat-error>
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Vehicle</mat-label>
                     <mat-select placeholder="VehicleId" formControlName="vehicleId">
                         <mat-option *ngFor="let vehicleItem of formData.vehicleList" [value]="vehicleItem.id">
@@ -33,8 +33,8 @@
                     <mat-error>Vehicle is required</mat-error>
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Driver</mat-label>
                     <mat-select placeholder="DriverId" formControlName="driverId">
                         <mat-option *ngFor="let driverItem of formData.driverList" [value]="driverItem.id">
@@ -43,15 +43,15 @@
                     <mat-error>Driver is required</mat-error>
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Price</mat-label><input matInput type="number" placeholder="Price"
                         formControlName="price" id="price">
                     <mat-error *ngIf="hasError('price', 'required')">Price is required</mat-error>
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Departure Date</mat-label>
                     <input matInput [ngxMatDatetimePicker]="picker_dateOut" placeholder="Choose a date"
                         formControlName="dateOut">
@@ -61,8 +61,8 @@
                     <mat-error>Departure Date is required</mat-error>
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Delivery Date</mat-label>
                     <input matInput [ngxMatDatetimePicker]="picker_dateIn" placeholder="Choose a date"
                         formControlName="dateIn">
@@ -72,8 +72,8 @@
                     <mat-error>Delivery Date is required</mat-error>
                 </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field *ngIf="readOnly" appearance="outline" class="w-100-p" floatLabel="true">
+            <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field *ngIf="readOnly" appearance="outline" class="w-full" floatLabel="true">
                     <mat-label>Driver Rating</mat-label>
                     <input matInput type="number" placeholder="Punctuality" style="display:none"
                         formControlName="reviewDriver" id="reviewDriver">
@@ -83,15 +83,15 @@
                     <mat-hint><b>{{bidRow.reviewDriverCount}}</b> Reviews</mat-hint>
                 </mat-form-field>
             </div>
-            <!-- <div *ngIf="readOnly" fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
+            <!-- <div *ngIf="readOnly" class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
                 <span>Driver Rating:</span>&nbsp;
                 <span [matBadge]="bidRow.reviewDriverCount" matBadgeOverlap="false">
                     <mat-star-rating [rating]="bidRow.reviewDriver" [starCount]="5" [color]="starColorP"
                         style="position: relative; top: 6px;"></mat-star-rating>
                 </span>
             </div> -->
-            <!-- <div fxFlex="100" fxFlex.gt-xs="50" class="p-4" style="padding: 0px!important;">
-                <mat-form-field appearance="outline" class="w-100-p">
+            <!-- <div class="sm:col-span-1 lg:col-span-2" style="padding: 0px!important;">
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>StatusId</mat-label>
                     <mat-select placeholder="StatusId" formControlName="statusId">
                         <mat-option *ngFor="let statusItem of formData.statusList" [value]="statusItem.id">
