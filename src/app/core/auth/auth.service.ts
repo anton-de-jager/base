@@ -148,33 +148,37 @@ export class AuthService {
                 of(false)
             ),
             switchMap((response: any) => {
-                if (response.user) {
-                    localStorage.clear();
-                    // Store the access token in the local storage
-                    this.accessToken = response.accessToken;
-                    this.email = response.user.email;
-                    localStorage.setItem('accessToken', this.accessToken);
-                    localStorage.setItem('userId', response.user.id);
-                    localStorage.setItem('email', response.user.email);
-                    localStorage.setItem('user', JSON.stringify(response.user));
-                    localStorage.setItem('vehiclesQuantity', JSON.stringify(response.user.vehicles));
-                    localStorage.setItem('loadsQuantity', JSON.stringify(response.user.loads));
-                    localStorage.setItem('advertsQuantity', JSON.stringify(response.user.adverts));
-                    localStorage.setItem('directoryQuantity', JSON.stringify(response.user.directory));
-                    localStorage.setItem('orderId', JSON.stringify(response.user.orderId));
-                    localStorage.setItem('subscriptionId', JSON.stringify(response.user.subscriptionId));
-                    localStorage.setItem('subscriptionStatus', JSON.stringify(response.user.subscriptionStatus));
+                if (response !== null && response !== undefined) {
+                    if (response.user !== null && response.user !== undefined) {
+                        localStorage.clear();
+                        // Store the access token in the local storage
+                        this.accessToken = response.accessToken;
+                        this.email = response.user.email;
+                        localStorage.setItem('accessToken', this.accessToken);
+                        localStorage.setItem('userId', response.user.id);
+                        localStorage.setItem('email', response.user.email);
+                        localStorage.setItem('user', JSON.stringify(response.user));
+                        localStorage.setItem('vehiclesQuantity', JSON.stringify(response.user.vehicles));
+                        localStorage.setItem('loadsQuantity', JSON.stringify(response.user.loads));
+                        localStorage.setItem('advertsQuantity', JSON.stringify(response.user.adverts));
+                        localStorage.setItem('directoryQuantity', JSON.stringify(response.user.directory));
+                        localStorage.setItem('orderId', JSON.stringify(response.user.orderId));
+                        localStorage.setItem('subscriptionId', JSON.stringify(response.user.subscriptionId));
+                        localStorage.setItem('subscriptionStatus', JSON.stringify(response.user.subscriptionStatus));
 
-                    // Set the authenticated flag to true
-                    this._authenticated = true;
+                        // Set the authenticated flag to true
+                        this._authenticated = true;
 
-                    // Store the user on the user service
-                    this._userService.user = response.user;
-                    console.log(response.user);
+                        // Store the user on the user service
+                        this._userService.user = response.user;
+                        console.log(response.user);
 
-                    // Return true
-                    return of(true);
-                }else{
+                        // Return true
+                        return of(true);
+                    } else {
+                        return of(false);
+                    }
+                } else {
                     return of(false);
                 }
             })

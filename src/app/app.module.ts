@@ -14,6 +14,7 @@ import { appRoutes } from 'app/app.routing';
 import { VariableService } from 'app/shared/variable.service';
 import { WebsocketService } from './modules/admin/services/websocket.service';
 import { MessageService } from './modules/admin/services/message.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
@@ -39,7 +40,8 @@ const routerConfig: ExtraOptions = {
         CoreModule,
 
         // Layout module of your application
-        LayoutModule
+        LayoutModule,
+        FlexLayoutModule
     ],
     bootstrap   : [
         AppComponent

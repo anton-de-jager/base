@@ -11,8 +11,8 @@ import { Capacitor } from '@capacitor/core';
 export const appRoutes: Route[] = [
 
     // Redirect empty path to '/dashboard'
-    //{ path: '', pathMatch: 'full', redirectTo: 'dashboard' },
-    { path: '', pathMatch: 'full', redirectTo: 'home' },
+    { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+    //{ path: '', pathMatch: 'full', redirectTo: 'home' },
 
     // Redirect signed in user to the '/dashboard'
     //
@@ -70,7 +70,7 @@ export const appRoutes: Route[] = [
             layout: 'empty'
         },
         children: [
-            { path: 'home', loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule) },
+            //{ path: 'home', loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule) },
             { path: 'privacyPolicy', loadChildren: () => import('app/modules/landing/privacyPolicy/privacyPolicy.module').then(m => m.PrivacyPolicyModule) },
             { path: 'businessDirectory', loadChildren: () => import('app/modules/landing/businessDirectory/businessDirectory.module').then(m => m.BusinessDirectoryOpenModule) },
             { path: 'directoryDetails', loadChildren: () => import('app/modules/landing/directoryDetails/directoryDetails.module').then(m => m.DirectoryDetailsOpenModule) }
