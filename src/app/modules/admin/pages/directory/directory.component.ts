@@ -61,7 +61,7 @@ export class DirectoryComponent implements OnInit {
     ngOnInit(): void {
         this.route.queryParams.subscribe(params => {
             if (params.action == 'return') {
-                console.log('now');
+                //console.log('now');
             }
         });
 

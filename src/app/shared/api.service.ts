@@ -84,7 +84,6 @@ export class ApiService {
     }
 
     saveItem(model: string, item: any): Observable<any> {
-        console.log(this.getHeader());
         return this.http.post<any>(`${environment.api}api/` + model, item, { headers: this.getHeader() });
     }
 

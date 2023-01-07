@@ -242,7 +242,7 @@ export class AuthSignUpComponent implements OnInit {
             u8arr[n] = bstr.charCodeAt(n);
         }
 
-        console.log(new File([u8arr], 'file.' + mime.replace('image/', ''), { type: mime }));
+        //console.log(new File([u8arr], 'file.' + mime.replace('image/', ''), { type: mime }));
 
         return new File([u8arr], 'file.' + mime.replace('image/', ''), { type: mime });
     }
@@ -268,7 +268,7 @@ export class AuthSignUpComponent implements OnInit {
         // Create parameter string
         let pfOutput = "";
         for (let key in data) {
-            console.log(key, data[key]);
+            //console.log(key, data[key]);
             if (data.hasOwnProperty(key)) {
                 if (data[key] !== "") {
                     try {

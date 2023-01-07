@@ -43,7 +43,7 @@ export class SettingsAccountComponent implements OnInit {
     ) {
         this.timestamp = new Date().getTime();
         this.user = JSON.parse(localStorage.getItem('user'));
-        console.log(this.user);
+        //console.log(this.user);
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -114,7 +114,7 @@ export class SettingsAccountComponent implements OnInit {
             u8arr[n] = bstr.charCodeAt(n);
         }
 
-        console.log(new File([u8arr], 'file.' + mime.replace('image/', ''), { type: mime }));
+        //console.log(new File([u8arr], 'file.' + mime.replace('image/', ''), { type: mime }));
 
         return new File([u8arr], 'file.' + mime.replace('image/', ''), { type: mime });
     }
@@ -149,7 +149,7 @@ export class SettingsAccountComponent implements OnInit {
         this.apiService.updateUser(this.accountForm.value)
             .subscribe(
                 (response) => {
-                    console.log('response', response);
+                    //console.log('response', response);
                     if (response['id'] != '00000000-0000-0000-0000-000000000000') {
                         if (this.fileToUpload) {
                             this.uploadFile(this.fileToUpload, response['id'] + '.' + this.fileToUpload.name.split('.').pop()).then(x => {

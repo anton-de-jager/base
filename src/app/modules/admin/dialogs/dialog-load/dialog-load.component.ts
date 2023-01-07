@@ -132,7 +132,7 @@ export class DialogLoadComponent {
             u8arr[n] = bstr.charCodeAt(n);
         }
 
-        console.log(new File([u8arr], 'file.' + mime.replace('image/', ''), { type: mime }));
+        //console.log(new File([u8arr], 'file.' + mime.replace('image/', ''), { type: mime }));
 
         return new File([u8arr], 'file.' + mime.replace('image/', ''), { type: mime });
     }

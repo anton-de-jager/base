@@ -125,7 +125,7 @@ export class SettingsPlanBillingComponent implements OnInit {
                 'timestamp': data.find(x => x[0] == "timestamp")[1],
                 'signature': data['signature']
             }).subscribe(res => {
-                console.log(res);
+                //console.log(res);
             })
         }, 100);
     }
@@ -170,7 +170,7 @@ export class SettingsPlanBillingComponent implements OnInit {
                             'timestamp': myData["timestamp"],
                             'signature': signature
                         }).subscribe(res => {
-                            console.log(res);
+                            //console.log(res);
                         })
                     }, 100);
                 }, 100);
@@ -412,7 +412,7 @@ export class SettingsPlanBillingComponent implements OnInit {
 
         if (localStorage.getItem('subscriptionId').length > 4) {
             this.apiService.updatePayfast(localStorage.getItem('subscriptionId'), this.getZAR(), this.getQuantity('vehicle'), this.getQuantity('load'), this.getQuantity('advert'), this.getQuantity('directory')).subscribe(res => {
-                console.log(res);
+                //console.log(res);
                 this.fuseSplashScreenService.hide();
             });
         } else {

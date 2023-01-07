@@ -62,7 +62,7 @@ export class BusinessDirectoryComponent implements OnInit {
         private _fuseMediaWatcherService: FuseMediaWatcherService
     ) {
         this.fuseSplashScreenService.show(); this.loading = true;
-        console.log(this.userId);
+        //console.log(this.userId);
     }
 
     ngOnInit(): void {

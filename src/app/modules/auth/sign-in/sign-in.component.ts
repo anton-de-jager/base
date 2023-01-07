@@ -43,7 +43,7 @@ export class AuthSignInComponent implements OnInit {
         private apiService: ApiService
     ) {
         this.native = Capacitor.isNativePlatform() ? 'White' : '';
-        console.log(this.native);
+        //console.log(this.native);
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -100,7 +100,7 @@ export class AuthSignInComponent implements OnInit {
 
                 },
                 (response) => {
-                    console.log(response);
+                    //console.log(response);
                     this.htmlStr += '<p>' + response.error + '</p>';
                     this.htmlStr += '<p>' + response.message + '</p>';
                     // Re-enable the form

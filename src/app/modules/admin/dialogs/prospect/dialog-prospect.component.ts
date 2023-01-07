@@ -63,7 +63,7 @@ export class DialogProspectComponent {
         this.splashScreen = splashScreen;
         this.formErrors = data.formErrors;
         this.formData = data;
-        console.log(data);
+        //console.log(data);
 
         this.dataSourceLanguage = new MatTableDataSource(data.form.value.prospectLanguage);
         this.dataSourceSubject = new MatTableDataSource(data.form.value.prospectSubject);

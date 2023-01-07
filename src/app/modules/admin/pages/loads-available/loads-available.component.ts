@@ -82,7 +82,7 @@ export class LoadsAvailableComponent implements OnInit {
     ngOnInit(): void {
         this.route.queryParams.subscribe(params => {
             if (params.action == 'return') {
-                console.log('now');
+                //console.log('now');
             }
         });
 
@@ -144,7 +144,7 @@ export class LoadsAvailableComponent implements OnInit {
 
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log(result);
+            //console.log(result);
         });
     }
 

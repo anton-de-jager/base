@@ -91,7 +91,7 @@ export class LoadsComponent implements OnInit {
     ngOnInit(): void {
         this.route.queryParams.subscribe(params => {
             if (params.action == 'return') {
-                console.log('now');
+                //console.log('now');
             }
         });
 
@@ -137,7 +137,7 @@ export class LoadsComponent implements OnInit {
 
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log(result);
+            //console.log(result);
         });
     }
 

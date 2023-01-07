@@ -131,7 +131,7 @@ export class DashboardComponent implements OnInit {
     }
 
     navigate(str){
-        console.log(str);
+        //console.log(str);
         this._router.navigateByUrl(str);
     }
 

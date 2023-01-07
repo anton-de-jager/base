@@ -137,8 +137,8 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
         });
 
         setTimeout(() => {
-            console.log(minlat, minlon);
-            console.log(maxlat, maxlon);
+            //console.log(minlat, minlon);
+            //console.log(maxlat, maxlon);
             this.map.fitBounds(L.latLngBounds(new L.LatLng(minlat, minlon), new L.LatLng(maxlat, maxlon)))
         }, 100);
     }

@@ -53,7 +53,7 @@ export class BusinessDirectoryOpenComponent implements OnInit {
         private _fuseMediaWatcherService: FuseMediaWatcherService
     ) {
         this.fuseSplashScreenService.show(); this.loading = true;
-        console.log(this.userId);
+        //console.log(this.userId);
         this.native = Capacitor.isNativePlatform() ? 'White' : '';
     }
 

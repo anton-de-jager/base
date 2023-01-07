@@ -67,7 +67,7 @@ export class VehiclesComponent implements OnInit {
     ngOnInit(): void {
         this.route.queryParams.subscribe(params => {
             if (params.action == 'return') {
-                console.log('now');
+                //console.log('now');
             }
         });
 
@@ -82,7 +82,7 @@ export class VehiclesComponent implements OnInit {
                         this.vehicleList = getVehicleResult;
                         this.dataSource = new MatTableDataSource(this.vehicleList);
                         this.fuseSplashScreenService.hide(); this.loading = false;
-                        console.log(this.dataSource);
+                        //console.log(this.dataSource);
                     });
                 });
             });

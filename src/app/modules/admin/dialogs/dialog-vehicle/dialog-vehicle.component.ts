@@ -107,7 +107,7 @@ export class DialogVehicleComponent {
             u8arr[n] = bstr.charCodeAt(n);
         }
 
-        console.log(new File([u8arr], 'file.' + mime.replace('image/', ''), { type: mime }));
+        //console.log(new File([u8arr], 'file.' + mime.replace('image/', ''), { type: mime }));
 
         return new File([u8arr], 'file.' + mime.replace('image/', ''), { type: mime });
     }
@@ -138,7 +138,7 @@ export class DialogVehicleComponent {
 
         dialogRef.afterClosed().subscribe((result:address) => {
             if (result) {
-                console.log(control, result);
+                //console.log(control, result);
                 if (control == 'originatingAddressLabel') {
                     this.form.controls['originatingAddressLabel'].setValue(result.label);
                     this.form.controls['originatingAddressLat'].setValue(result.lat);
